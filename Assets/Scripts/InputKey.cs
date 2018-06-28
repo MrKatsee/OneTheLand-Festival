@@ -34,5 +34,25 @@ public class InputKey : MonoBehaviour {
                 transform.Translate(spd * 20f, 0f, 0f);
             }
         }
-	}
+
+        if (isplayer == 2)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                transform.Translate(0f, spd * 20f, 0f);
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                transform.Translate(0f, spd * -20f, 0f);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.Translate(spd * -20f, 0f, 0f);
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Translate(spd * 20f, 0f, 0f);
+            }
+        }
+    }
 }

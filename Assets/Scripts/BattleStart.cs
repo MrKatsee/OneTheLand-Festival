@@ -13,7 +13,9 @@ public class BattleStart : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        cNum = 1;       //for test
+        cNum = GameManager.Instance.characNum;
+
+        // cNum = 1;       //for test
 
         p_location = gameObject.transform.position;
 
