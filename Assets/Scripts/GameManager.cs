@@ -29,10 +29,8 @@ public class GameManager : MonoBehaviour
  
 	}
 
-    public int characNum;
- 
-	public void DoHello()
-	{
-		Debug.Log("Hello");
-	}
+    public int characNum1;
+    public int characNum2;
+    public int mapNum;
+
 }

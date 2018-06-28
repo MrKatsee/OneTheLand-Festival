@@ -13,16 +13,24 @@ public class BattleStart : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        cNum = GameManager.Instance.characNum;
+        //character selection
+        if (pNum == 1)
+        {
+            cNum = GameManager.Instance.characNum1;
+        }
 
-        // cNum = 1;       //for test
+        else if (pNum == 2)
+        {
+            cNum = GameManager.Instance.characNum2;
+        }
+        cNum = 1;       //for test
 
         p_location = gameObject.transform.position;
 
         if (pNum == 1)
             p_rotation = new Vector3(3f, 3f, 1f);
 
-        if (pNum == 2)
+        else if (pNum == 2)
             p_rotation = new Vector3(-3f, 3f, 1f);
 
         if (cNum == 1)

@@ -1,0 +1,178 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HPManagement : MonoBehaviour {
+
+    public GameObject[] P1HP = new GameObject[5];
+    public GameObject[] P2HP = new GameObject[5];
+    public int HP;
+    int HP_Max;
+    int HP_temp;
+    public float skillGuage;
+    public Image skillBar;
+    public Image skillBarUse;
+    float skillGuageStack;
+
+    // Use this for initialization
+    void Start () {
+        P1HP[0] = GameObject.Find("U_P1HP1");
+        P1HP[1] = GameObject.Find("U_P1HP2");
+        P1HP[2] = GameObject.Find("U_P1HP3");
+        P1HP[3] = GameObject.Find("U_P1HP4");
+        P1HP[4] = GameObject.Find("U_P1HP5");
+        P2HP[0] = GameObject.Find("U_P2HP1");
+        P2HP[1] = GameObject.Find("U_P2HP2");
+        P2HP[2] = GameObject.Find("U_P2HP3");
+        P2HP[3] = GameObject.Find("U_P2HP4");
+        P2HP[4] = GameObject.Find("U_P2HP5");
+
+        HP_temp = HP;
+        HP_Max = HP;
+
+        if (gameObject.GetComponent<InputKey>().isplayer == 1)
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                if (i > HP_Max)
+                {
+                    P1HP[i-1].SetActive(false);
+                }
+            }
+            skillBar = GameObject.Find("U_P1SkillGuage").GetComponent<Image>();
+            skillBarUse = GameObject.Find("U_P1SkillGuageUse").GetComponent<Image>();
+        }
+
+        if (gameObject.GetComponent<InputKey>().isplayer == 2)
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                if (i > HP_Max)
+                {
+                    P2HP[i - 1].SetActive(false);
+                }
+            }
+            skillBar = GameObject.Find("U_P2SkillGuage").GetComponent<Image>();
+            skillBarUse = GameObject.Find("U_P2SkillGuageUse").GetComponent<Image>();
+        }
+
+        skillGuage = 0;
+        skillGuageStack = 0;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (HP != HP_temp)
+        {
+            AltHP();
+        }
+
+        AltSkillGuage();
+
+        if (Input.GetKey(KeyCode.T) && gameObject.GetComponent<InputKey>().isplayer == 1)
+        {
+            AltSkillGuageUse();
+        }
+        if (Input.GetKey(KeyCode.Space) && gameObject.GetComponent<InputKey>().isplayer == 2)
+        {
+            AltSkillGuageUse();
+        }
+
+        skillBarUse.fillAmount = skillGuageStack;
+
+    }
+
+    void AltHP()
+    {
+        if (HP > HP_Max)
+        {
+            HP -= 1;
+        }
+
+        if (gameObject.GetComponent<InputKey>().isplayer == 1)
+        {
+            if (HP == HP_temp + 1)
+            {
+                if (HP == 1)
+                    P2HP[0].SetActive(true);
+                if (HP == 2)
+                    P2HP[1].SetActive(true);
+                if (HP == 3)
+                    P2HP[2].SetActive(true);
+                if (HP == 4)
+                    P2HP[3].SetActive(true);
+                if (HP == 5)
+                    P2HP[4].SetActive(true);
+            }
+            if (HP == HP_temp - 1)
+            {
+                if (HP == 0)
+                    P2HP[0].SetActive(false);
+                if (HP == 1)
+                    P2HP[1].SetActive(false);
+                if (HP == 2)
+                    P2HP[2].SetActive(false);
+                if (HP == 3)
+                    P2HP[3].SetActive(false);
+                if (HP == 4)
+                    P2HP[4].SetActive(false);
+            }
+        }
+
+        if (gameObject.GetComponent<InputKey>().isplayer == 2)
+        {
+            if (HP == HP_temp + 1)
+            {
+                if (HP == 1)
+                    P2HP[0].SetActive(true);
+                if (HP == 2)
+                    P2HP[1].SetActive(true);
+                if (HP == 3)
+                    P2HP[2].SetActive(true);
+                if (HP == 4)
+                    P2HP[3].SetActive(true);
+                if (HP == 5)
+                    P2HP[4].SetActive(true);
+            }
+            if (HP == HP_temp - 1)
+            {
+                if (HP == 0)
+                    P2HP[0].SetActive(false);
+                if (HP == 1)
+                    P2HP[1].SetActive(false);
+                if (HP == 2)
+                    P2HP[2].SetActive(false);
+                if (HP == 3)
+                    P2HP[3].SetActive(false);
+                if (HP == 4)
+                    P2HP[4].SetActive(false);
+            }
+        }
+
+        HP_temp = HP;
+    }
+
+    void AltSkillGuage()
+    {
+        if (skillGuage <= 1f)
+        {
+            skillGuage += 0.2f * Time.deltaTime;
+        }
+
+        skillBar.fillAmount = skillGuage;
+    }
+
+    void AltSkillGuageUse()
+    {
+        if (skillGuageStack <= 1f && skillGuageStack <= skillGuage)
+        {
+            skillGuageStack += 0.5f * Time.deltaTime;
+        }
+    }
+
+    void HPDecrease()
+    {
+        HP -= 1;
+    }
+}
