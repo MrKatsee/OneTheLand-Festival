@@ -14,6 +14,8 @@ public class HPManagement : MonoBehaviour {
     public Image skillBar;
     public Image skillBarUse;
     float skillGuageStack;
+    public int isCharacter;
+    public int skillTrigger;
 
     // Use this for initialization
     void Start () {
@@ -31,7 +33,7 @@ public class HPManagement : MonoBehaviour {
         HP_temp = HP;
         HP_Max = HP;
 
-        if (gameObject.GetComponent<InputKey>().isplayer == 1)
+        if (gameObject.GetComponent<InputKey>().isPlayer == 1)
         {
             for (int i = 1; i <= 5; i++)
             {
@@ -42,9 +44,10 @@ public class HPManagement : MonoBehaviour {
             }
             skillBar = GameObject.Find("U_P1SkillGuage").GetComponent<Image>();
             skillBarUse = GameObject.Find("U_P1SkillGuageUse").GetComponent<Image>();
+            isCharacter = GameObject.Find("L_P1Start").GetComponent<BattleStart>().cNum;
         }
 
-        if (gameObject.GetComponent<InputKey>().isplayer == 2)
+        if (gameObject.GetComponent<InputKey>().isPlayer == 2)
         {
             for (int i = 1; i <= 5; i++)
             {
@@ -55,10 +58,12 @@ public class HPManagement : MonoBehaviour {
             }
             skillBar = GameObject.Find("U_P2SkillGuage").GetComponent<Image>();
             skillBarUse = GameObject.Find("U_P2SkillGuageUse").GetComponent<Image>();
+            isCharacter = GameObject.Find("L_P2Start").GetComponent<BattleStart>().cNum;
         }
 
         skillGuage = 0;
         skillGuageStack = 0;
+        
     }
 
     // Update is called once per frame
@@ -70,17 +75,7 @@ public class HPManagement : MonoBehaviour {
 
         AltSkillGuage();
 
-        if (Input.GetKey(KeyCode.T) && gameObject.GetComponent<InputKey>().isplayer == 1)
-        {
-            AltSkillGuageUse();
-        }
-        if (Input.GetKey(KeyCode.Space) && gameObject.GetComponent<InputKey>().isplayer == 2)
-        {
-            AltSkillGuageUse();
-        }
-
         skillBarUse.fillAmount = skillGuageStack;
-
     }
 
     void AltHP()
@@ -90,7 +85,7 @@ public class HPManagement : MonoBehaviour {
             HP -= 1;
         }
 
-        if (gameObject.GetComponent<InputKey>().isplayer == 1)
+        if (gameObject.GetComponent<InputKey>().isPlayer == 1)
         {
             if (HP == HP_temp + 1)
             {
@@ -120,7 +115,7 @@ public class HPManagement : MonoBehaviour {
             }
         }
 
-        if (gameObject.GetComponent<InputKey>().isplayer == 2)
+        if (gameObject.GetComponent<InputKey>().isPlayer == 2)
         {
             if (HP == HP_temp + 1)
             {
@@ -163,11 +158,36 @@ public class HPManagement : MonoBehaviour {
         skillBar.fillAmount = skillGuage;
     }
 
-    void AltSkillGuageUse()
+    public void AltSkillGuageUse()
     {
         if (skillGuageStack <= 1f && skillGuageStack <= skillGuage)
         {
             skillGuageStack += 0.5f * Time.deltaTime;
+        } 
+    }
+
+    public void SkillUseTrigger()
+    {
+        //skill trigger by character
+        if (isCharacter == 1)
+        {
+            if (skillGuageStack >= 0.25f)
+            {
+                skillTrigger = 1;
+            }
+            if (skillGuageStack >= 0.5f)
+            {
+                skillTrigger = 2;
+            }
+            if (skillGuageStack >= 0.75f)
+            {
+                skillTrigger = 3;
+            }
+            if (skillGuageStack >= 1f)
+            {
+                skillTrigger = 4;
+            }
+            skillGuageStack = 0f;
         }
     }
 

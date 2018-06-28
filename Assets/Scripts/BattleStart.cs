@@ -37,7 +37,7 @@ public class BattleStart : MonoBehaviour {
         {
             GameObject temp = Instantiate(Charac[0], p_location, Quaternion.identity);
             temp.transform.localScale = p_rotation;
-            temp.GetComponent<InputKey>().isplayer = pNum;
+            temp.GetComponent<InputKey>().isPlayer = pNum;
             startHP = 3;
         }
 	}
