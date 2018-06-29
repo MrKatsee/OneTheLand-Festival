@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class select_p1 : MonoBehaviour {
 
-	int P1;
 	char[] SL1={'C','h','1'};
 	static string select;
 	public GameObject SL_Ch;
-	public static bool SL_Decide=false;
+	public static bool SL_Decide;
 	// Use this for initialization
 	void Start () {
-		P1 = 1;
+		Data.P1 = 1;
+		SL_Decide = false;
 	}
 	
 	// Update is called once per frame
@@ -20,12 +20,12 @@ public class select_p1 : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.A)&&SL_Decide==false) {
 			if (SL1[2] != '1') {
 				SL1[2]--;
-				P1--;
+				Data.P1--;
 			}
 		} else if (Input.GetKeyDown (KeyCode.D)&&SL_Decide==false) {
 			if (SL1[2] != '7') {
 				SL1[2]++;
-				P1++;
+				Data.P1++;
 			}
 		}
 		foreach(char c in SL1)

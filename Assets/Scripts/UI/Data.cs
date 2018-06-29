@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Data : MonoBehaviour {
-	static public int left_player;
-	static public int right_player;
+
+	public static int P1;
+	public static int P2;
 	// Use this for initialization
 	void Start () {
 		
