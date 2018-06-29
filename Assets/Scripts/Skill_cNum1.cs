@@ -14,7 +14,22 @@ public class Skill_cNum1 : MonoBehaviour {
 	void Update () {
         skillNum = gameObject.GetComponent<HPManagement>().skillTrigger;
 
-
+        if (skillNum == 1)
+        {
+            Debug.Log("skill1");
+        }
+        if (skillNum == 2)
+        {
+            Debug.Log("skill2");
+        }
+        if (skillNum == 3)
+        {
+            Debug.Log("skill3");
+        }
+        if (skillNum == 4)
+        {
+            Debug.Log("skill4");
+        }
 
         gameObject.GetComponent<HPManagement>().skillTrigger = 0;
     }
