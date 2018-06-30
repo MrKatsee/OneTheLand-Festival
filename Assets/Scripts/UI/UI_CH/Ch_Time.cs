@@ -13,9 +13,9 @@ public class Ch_Time : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		time_one = 0;
-		time_ten =3;
-		timer [0] = gameObject.transform.FindChild ("time_one").gameObject;
-		timer [1] = gameObject.transform.FindChild ("time_ten").gameObject;
+		time_ten = 3;
+		timer [0] = gameObject.transform.Find ("time_one").gameObject;
+		timer [1] = gameObject.transform.Find ("time_ten").gameObject;
 		for (int i = 0; i < 10; i++) {
 			number_image = string.Concat (imagenum);
 			imagenum [6]++;
@@ -24,11 +24,12 @@ public class Ch_Time : MonoBehaviour {
 		timerstart = true;
 		StartCoroutine ("Timer");
 
+		timer[0].GetComponent<Image> ().sprite = number [time_one];
+		timer[1].GetComponent<Image> ().sprite = number [time_ten];
+
 	}
 
 	void Update () {
-		timer[0].GetComponent<Image> ().sprite = number [time_one];
-		timer[1].GetComponent<Image> ().sprite = number [time_ten];
 		if (time_one == 0 && time_ten == 0) {
 			select_p1.SL_Decide = true;
 			select_p2.SL_Decide = true;
