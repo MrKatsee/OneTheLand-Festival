@@ -40,8 +40,8 @@ public class NormalAttack : MonoBehaviour
         {
             bullet_temp = Instantiate(Bullet);
             bullet_temp.transform.position = bulletShootPosition + gameObject.transform.position;
-            bullet_temp.gameObject.GetComponent<Bullet_Temp>().isPlayer_BulletTemp = gameObject.GetComponent<InputKey>().isPlayer;
-            Destroy(bullet_temp, 3f);
+            bullet_temp.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
+            Destroy(bullet_temp, 5f);
             yield return new WaitForSeconds(1f * spd);
         }
     }

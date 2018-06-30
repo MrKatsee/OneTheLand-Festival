@@ -12,6 +12,8 @@ public class CharacterFrameImage : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        frame = GetComponent<Image>();
+
         if (isPlayer_frame == 1)
         {
             cNum = GameObject.Find("L_P1Start").GetComponent<BattleStart>().cNum;

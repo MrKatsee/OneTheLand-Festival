@@ -67,7 +67,7 @@ public class InputKey : MonoBehaviour {
         {
             gameObject.GetComponent<HPManagement>().AltSkillGuageUse();
         }
-        if (Input.GetKey(KeyCode.M) && isPlayer == 2)
+        if (Input.GetKeyUp(KeyCode.M) && isPlayer == 2)
         {
             gameObject.GetComponent<HPManagement>().SkillUseTrigger();
         }

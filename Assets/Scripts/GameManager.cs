@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
  
 	}
 
-    public int characNum1;
-    public int characNum2;
+    public int characNum1 = 1;
+    public int characNum2 = 2;
     public int mapNum;
 
 }
