@@ -14,8 +14,8 @@ public class Ch_Time : MonoBehaviour {
 	void Start () {
 		time_one = 0;
 		time_ten =3;
-		timer [0] = gameObject.transform.FindChild ("time_one").gameObject;
-		timer [1] = gameObject.transform.FindChild ("time_ten").gameObject;
+		timer [0] = gameObject.transform.Find ("time_one").gameObject;
+		timer [1] = gameObject.transform.Find ("time_ten").gameObject;
 		for (int i = 0; i < 10; i++) {
 			number_image = string.Concat (imagenum);
 			imagenum [6]++;

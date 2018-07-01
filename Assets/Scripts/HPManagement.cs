@@ -97,28 +97,28 @@ public class HPManagement : MonoBehaviour {
             if (HP == HP_temp + 1)
             {
                 if (HP == 1)
-                    P2HP[0].SetActive(true);
+                    P1HP[0].SetActive(true);
                 if (HP == 2)
-                    P2HP[1].SetActive(true);
+                    P1HP[1].SetActive(true);
                 if (HP == 3)
-                    P2HP[2].SetActive(true);
+                    P1HP[2].SetActive(true);
                 if (HP == 4)
-                    P2HP[3].SetActive(true);
+                    P1HP[3].SetActive(true);
                 if (HP == 5)
-                    P2HP[4].SetActive(true);
+                    P1HP[4].SetActive(true);
             }
             if (HP == HP_temp - 1)
             {
                 if (HP == 0)
-                    P2HP[0].SetActive(false);
+                    P1HP[0].SetActive(false);
                 if (HP == 1)
-                    P2HP[1].SetActive(false);
+                    P1HP[1].SetActive(false);
                 if (HP == 2)
-                    P2HP[2].SetActive(false);
+                    P1HP[2].SetActive(false);
                 if (HP == 3)
-                    P2HP[3].SetActive(false);
+                    P1HP[3].SetActive(false);
                 if (HP == 4)
-                    P2HP[4].SetActive(false);
+                    P1HP[4].SetActive(false);
             }
             HP_temp = HP;
 

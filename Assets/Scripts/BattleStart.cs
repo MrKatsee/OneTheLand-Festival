@@ -10,6 +10,9 @@ public class BattleStart : MonoBehaviour {
     public GameObject[] Charac = new GameObject[7];
     GameObject temp;
     public int startHP;
+    public Vector2 p1P;
+    public Vector2 p2P;
+    public GameObject test;
 
 	// Use this for initialization
 	void Start () {
