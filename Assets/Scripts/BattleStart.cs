@@ -17,21 +17,22 @@ public class BattleStart : MonoBehaviour {
         if (pNum == 1)
         {
             cNum = GameManager.Instance.characNum1;
+            cNum = 1;
         }
 
         else if (pNum == 2)
         {
             cNum = GameManager.Instance.characNum2;
+            cNum = 2;
         }
-        cNum = 1;       //for test
 
         p_location = gameObject.transform.position;
 
         if (pNum == 1)
-            p_rotation = new Vector3(3f, 3f, 1f);
+            p_rotation = new Vector3(10f, 10f, 1f);
 
         else if (pNum == 2)
-            p_rotation = new Vector3(-3f, 3f, 1f);
+            p_rotation = new Vector3(-10f, 10f, 1f);
 
         if (cNum == 1)
         {
@@ -40,7 +41,15 @@ public class BattleStart : MonoBehaviour {
             temp.GetComponent<InputKey>().isPlayer = pNum;
             startHP = 3;
         }
-	}
+
+        if (cNum == 2)
+        {
+            GameObject temp = Instantiate(Charac[1], p_location, Quaternion.identity);
+            temp.transform.localScale = p_rotation;
+            temp.GetComponent<InputKey>().isPlayer = pNum;
+            startHP = 3;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

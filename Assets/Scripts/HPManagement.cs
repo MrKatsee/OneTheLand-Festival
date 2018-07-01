@@ -11,8 +11,9 @@ public class HPManagement : MonoBehaviour {
     int HP_Max;
     int HP_temp;
     public float skillGuage;
-    public Image skillBar;
-    public Image skillBarUse;
+    Image skillBar;
+    Image skillBarUse;
+    Image skillBarUsable;
     float skillGuageStack;
     public int isCharacter;
     public int skillTrigger;
@@ -24,6 +25,7 @@ public class HPManagement : MonoBehaviour {
         P1HP[2] = GameObject.Find("U_P1HP3");
         P1HP[3] = GameObject.Find("U_P1HP4");
         P1HP[4] = GameObject.Find("U_P1HP5");
+
         P2HP[0] = GameObject.Find("U_P2HP1");
         P2HP[1] = GameObject.Find("U_P2HP2");
         P2HP[2] = GameObject.Find("U_P2HP3");
@@ -44,6 +46,7 @@ public class HPManagement : MonoBehaviour {
             }
             skillBar = GameObject.Find("U_P1SkillGuage").GetComponent<Image>();
             skillBarUse = GameObject.Find("U_P1SkillGuageUse").GetComponent<Image>();
+            skillBarUsable = GameObject.Find("U_P1SkillGuageUsable").GetComponent<Image>();
             isCharacter = GameObject.Find("L_P1Start").GetComponent<BattleStart>().cNum;
         }
 
@@ -58,12 +61,15 @@ public class HPManagement : MonoBehaviour {
             }
             skillBar = GameObject.Find("U_P2SkillGuage").GetComponent<Image>();
             skillBarUse = GameObject.Find("U_P2SkillGuageUse").GetComponent<Image>();
+            skillBarUsable = GameObject.Find("U_P2SkillGuageUsable").GetComponent<Image>();
             isCharacter = GameObject.Find("L_P2Start").GetComponent<BattleStart>().cNum;
         }
 
         skillGuage = 0;
         skillGuageStack = 0;
-        
+        skillGuageStack = 0;
+
+
     }
 
     // Update is called once per frame
@@ -74,6 +80,7 @@ public class HPManagement : MonoBehaviour {
         }
 
         AltSkillGuage();
+        SkillUsableCheck();
 
         skillBarUse.fillAmount = skillGuageStack;
     }
@@ -113,9 +120,11 @@ public class HPManagement : MonoBehaviour {
                 if (HP == 4)
                     P2HP[4].SetActive(false);
             }
+            HP_temp = HP;
+
         }
 
-        if (gameObject.GetComponent<InputKey>().isPlayer == 2)
+        else if (gameObject.GetComponent<InputKey>().isPlayer == 2)
         {
             if (HP == HP_temp + 1)
             {
@@ -143,9 +152,10 @@ public class HPManagement : MonoBehaviour {
                 if (HP == 4)
                     P2HP[4].SetActive(false);
             }
+            HP_temp = HP;
+
         }
 
-        HP_temp = HP;
     }
 
     void AltSkillGuage()
@@ -189,10 +199,90 @@ public class HPManagement : MonoBehaviour {
             }
             skillGuageStack = 0f;
         }
+
+        if (isCharacter == 2)
+        {
+            if (skillGuageStack >= 0.25f)
+            {
+                skillTrigger = 1;
+            }
+            if (skillGuageStack >= 0.5f)
+            {
+                skillTrigger = 2;
+            }
+            if (skillGuageStack >= 0.75f)
+            {
+                skillTrigger = 3;
+            }
+            if (skillGuageStack >= 1f)
+            {
+                skillTrigger = 4;
+            }
+            skillGuageStack = 0f;
+        }
     }
 
-    void HPDecrease()
+    public void SkillUsableCheck()
     {
-        HP -= 1;
+        
+        if (isCharacter == 1)
+        {
+            if (skillGuageStack >= 0f)
+            {
+                skillBarUsable.fillAmount = 0f;
+            }
+            if (skillGuageStack >= 0.25f)
+            {
+                skillBarUsable.fillAmount = 0.25f;
+            }
+            if (skillGuageStack >= 0.5f)
+            {
+                skillBarUsable.fillAmount = 0.5f;
+            }
+            if (skillGuageStack >= 0.75f)
+            {
+                skillBarUsable.fillAmount = 0.75f;
+            }
+            if (skillGuageStack >= 1f)
+            {
+                skillBarUsable.fillAmount = 1f;
+            }
+        }
+
+        if (isCharacter == 2)
+        {
+            if (skillGuageStack >= 0f)
+            {
+                skillBarUsable.fillAmount = 0f;
+            }
+            if (skillGuageStack >= 0.25f)
+            {
+                skillBarUsable.fillAmount = 0.25f;
+            }
+            if (skillGuageStack >= 0.5f)
+            {
+                skillBarUsable.fillAmount = 0.5f;
+            }
+            if (skillGuageStack >= 0.75f)
+            {
+                skillBarUsable.fillAmount = 0.75f;
+            }
+            if (skillGuageStack >= 1f)
+            {
+                skillBarUsable.fillAmount = 1f;
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.tag == "Bullet")
+        {
+            if (gameObject.GetComponent<InputKey>().isPlayer != c.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet)
+            {
+                Destroy(c.gameObject);
+                HP -= 1;
+            }
+        }
     }
 }

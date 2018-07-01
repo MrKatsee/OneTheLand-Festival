@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_cNum1 : MonoBehaviour {
+public class Skill_cNum2 : MonoBehaviour
+{
 
     int skillNum;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         skillNum = gameObject.GetComponent<HPManagement>().skillTrigger;
 
         if (skillNum == 1)
