@@ -7,7 +7,7 @@ public class select_p2 : MonoBehaviour {
 	char[] SL2={'C','h','7'};
 	string select;
 	public GameObject SL_Ch;
-	public static bool SL_Decide=false;
+	public static bool SL_Decide;
 	void Start () {
 		Data.P2 = 7;
 		SL_Decide = false;

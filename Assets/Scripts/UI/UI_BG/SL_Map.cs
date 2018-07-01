@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ch_SL_P1 : MonoBehaviour {
+public class SL_Map : MonoBehaviour {
 
 
 	public Sprite[] Ch_Ir= new Sprite[7];
-
 	void Update () {
-
-		gameObject.GetComponent<Image>().sprite= Ch_Ir [Data.P1 - 1];
+		gameObject.GetComponent<Image>().sprite= Ch_Ir [Data.Map - 1];
+		
 	}
 }

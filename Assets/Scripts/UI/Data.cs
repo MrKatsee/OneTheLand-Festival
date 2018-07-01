@@ -6,13 +6,12 @@ public class Data : MonoBehaviour {
 
 	public static int P1;
 	public static int P2;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public static int Map;
+	public static GameObject UI_Ch;
+	public static GameObject UI_BG;
+	void Awake()
+	{
+		UI_Ch = GameObject.Find ("UI_Ch_SL");
+		UI_BG = GameObject.Find ("UI_BG_SL");
 	}
 }

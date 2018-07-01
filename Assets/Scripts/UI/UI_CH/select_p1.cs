@@ -5,7 +5,7 @@ using UnityEngine;
 public class select_p1 : MonoBehaviour {
 
 	char[] SL1={'C','h','1'};
-	static string select;
+	string select;
 	public GameObject SL_Ch;
 	public static bool SL_Decide;
 	// Use this for initialization
