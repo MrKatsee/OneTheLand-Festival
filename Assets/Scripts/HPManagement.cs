@@ -273,6 +273,10 @@ public class HPManagement : MonoBehaviour {
             }
         }
     }
+    public void SkillGuageCancle()
+    {
+
+    }
 
     void OnTriggerEnter2D(Collider2D c)
     {

@@ -14,7 +14,13 @@ public class Skill_cNum1 : MonoBehaviour {
     GameObject L_P2;
 
     public GameObject irisSkill1_AttackJud;
-    public GameObject irisSkill1_AttackVisual;
+    public GameObject irisSkill1_AttackVisual1;
+    public GameObject irisSkill1_AttackVisual2;
+    public GameObject irisSkill1_AttackVisual3;
+    public GameObject irisSkill1_AttackPreView1;
+    public GameObject irisSkill1_AttackPreView2;
+
+
 
 
     // Use this for initialization
@@ -42,14 +48,11 @@ public class Skill_cNum1 : MonoBehaviour {
         }
         target = oppP - myP;
 
-        Debug.Log("myP: " + myP);
-        Debug.Log("oppP: " + oppP);
-
         skillNum = gameObject.GetComponent<HPManagement>().skillTrigger;
 
         if (skillNum == 1)
         {
-            Iris_Skill1();
+            StartCoroutine(Iris_Skill1());
             Debug.Log("skill1");
 
         }
@@ -69,13 +72,38 @@ public class Skill_cNum1 : MonoBehaviour {
         gameObject.GetComponent<HPManagement>().skillTrigger = 0;
     }
 
-    void Iris_Skill1()
+    IEnumerator Iris_Skill1()
     {
-        float angle = Vector2.Angle(target, transform.right);
-        GameObject temp1;
-        temp1 = Instantiate(irisSkill1_AttackJud, transform.position, Quaternion.Euler(0, 0, angle));
-        Instantiate(irisSkill1_AttackVisual, transform.position, Quaternion.Euler(0, 0, angle));
-        temp1.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_C;
+        float targetingAngle = Vector2.Angle(target, transform.right);
+        targetingAngle = target.y > 0 ? targetingAngle : -targetingAngle;
+
+        GameObject guideLine;
+        GameObject graphicObject1;
+        GameObject graphicObject2;
+        GameObject graphicObject3;
+        GameObject colliderObject;
+
+        guideLine = Instantiate(irisSkill1_AttackPreView1, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.Euler(0, 0, targetingAngle));
+        Destroy(guideLine, 0.45f);
+        gameObject.GetComponent<InputKey>().canMove = 0;
+
+        yield return new WaitForSeconds(0.4f);
+
+        guideLine.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        graphicObject1 = Instantiate(irisSkill1_AttackVisual1, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.Euler(0, 0, targetingAngle));
+        Destroy(graphicObject1, 0.1f);
+        colliderObject = Instantiate(irisSkill1_AttackJud, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.Euler(0, 0, targetingAngle));
+        colliderObject.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_C;
+        Destroy(colliderObject, 0.2f);
+        graphicObject2 = Instantiate(irisSkill1_AttackVisual2, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.Euler(0, 0, targetingAngle));
+        Destroy(graphicObject2, 0.15f);
+        graphicObject3 = Instantiate(irisSkill1_AttackVisual3, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.Euler(0, 0, targetingAngle));
+        Destroy(graphicObject3, 0.2f);
+
+        gameObject.GetComponent<InputKey>().canMove = 1;
     }
 }
 

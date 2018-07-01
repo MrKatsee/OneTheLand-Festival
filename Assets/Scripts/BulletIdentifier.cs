@@ -6,10 +6,9 @@ public class BulletIdentifier : MonoBehaviour {
 
     public int isPlayer_Bullet;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+    }
 	
 	// Update is called once per frame
 	void Update () {
