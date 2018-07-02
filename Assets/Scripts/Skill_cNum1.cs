@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_cNum1 : MonoBehaviour {
+public class skill_cNum1 : MonoBehaviour {
 
     int skillNum;
     public Vector2 myP;

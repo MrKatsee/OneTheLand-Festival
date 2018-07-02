@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class InputKey : MonoBehaviour {
 
-    public float speed;
+    public static float speed;
     public int isPlayer;
     public int canMove = 1;
     float spd;
 
 	// Use this for initialization
 	void Start () {
+		speed = 10;
         spd = speed * Time.deltaTime;
 	}
 	
