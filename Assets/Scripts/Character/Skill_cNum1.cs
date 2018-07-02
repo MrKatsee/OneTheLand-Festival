@@ -9,6 +9,8 @@ public class Skill_cNum1 : MonoBehaviour {
     public Vector2 oppP;
     public Vector2 target;
     int isPlayer_C;
+    float targetLength;
+    Vector2 targetUnit;
 
     GameObject L_P1;
     GameObject L_P2;
@@ -18,17 +20,13 @@ public class Skill_cNum1 : MonoBehaviour {
     public GameObject irisSkill1_AttackVisual2;
     public GameObject irisSkill1_AttackVisual3;
     public GameObject irisSkill1_AttackPreView1;
-    public GameObject irisSkill1_AttackPreView2;
-
-
-
+    public GameObject irisSkill2_Butterfly;
 
     // Use this for initialization
     void Start () {
         isPlayer_C = gameObject.GetComponent<InputKey>().isPlayer;
         L_P1 = GameObject.Find("L_P1Start");
         L_P2 = GameObject.Find("L_P2Start");
-
     }
 
     // Update is called once per frame
@@ -47,6 +45,7 @@ public class Skill_cNum1 : MonoBehaviour {
             oppP = L_P1.gameObject.GetComponent<BattleStart>().p1P;
         }
         target = oppP - myP;
+        
 
         skillNum = gameObject.GetComponent<HPManagement>().skillTrigger;
 
@@ -54,10 +53,10 @@ public class Skill_cNum1 : MonoBehaviour {
         {
             StartCoroutine(Iris_Skill1());
             Debug.Log("skill1");
-
         }
         if (skillNum == 2)
         {
+            StartCoroutine(Iris_Skill2());
             Debug.Log("skill2");
         }
         if (skillNum == 3)
@@ -104,6 +103,22 @@ public class Skill_cNum1 : MonoBehaviour {
         Destroy(graphicObject3, 0.2f);
 
         gameObject.GetComponent<InputKey>().canMove = 1;
+    }
+
+    IEnumerator Iris_Skill2()
+    {
+        GameObject butterfly;
+
+        targetLength = Vector2.Distance(oppP, myP);
+
+        butterfly = Instantiate(irisSkill2_Butterfly, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.identity);
+        butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().targetUnit_Skill = target;
+        butterfly.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_C;
+
+        yield return new WaitForSeconds(5f);
+
+        butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().IrisSkill2_Bomb();
+        Destroy(butterfly);
     }
 }
 
