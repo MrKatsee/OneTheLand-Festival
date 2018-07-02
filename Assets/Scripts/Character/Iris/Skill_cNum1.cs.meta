@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 34ec47b2ec3e86d408a2020c5c1ad259
+timeCreated: 1530456837
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - irisSkill1_AttackJud: {fileID: 1591582117294840, guid: 35ffa37d0bc2d154f9cfb40081319ba3,
+      type: 2}
+  - irisSkill1_AttackVisual1: {fileID: 1381459981455408, guid: 2568d1d959f11e84280bdb0504c15785,
+      type: 2}
+  - irisSkill1_AttackVisual2: {fileID: 1070636594624576, guid: 17c74e91e0bc3a042b935bca349a4126,
+      type: 2}
+  - irisSkill1_AttackVisual3: {fileID: 1049302125271744, guid: 3f30c597c6deab54ab6040af69540903,
+      type: 2}
+  - irisSkill1_AttackPreView: {fileID: 1376192571104552, guid: 1bce4286c77b85a47b44486528cab348,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

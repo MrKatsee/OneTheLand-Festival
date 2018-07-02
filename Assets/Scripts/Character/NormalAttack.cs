@@ -9,7 +9,7 @@ public class NormalAttack : MonoBehaviour
     float spd;
     public GameObject nomalBullet;
     GameObject bullet_temp;
-    Vector3 bulletShootPosition = new Vector3(0f, 0f, 0f);
+    public Vector3 bulletShootPosition = new Vector3(0f, 0f, 0f);
 
     // Use this for initialization
     void Start()
@@ -18,11 +18,11 @@ public class NormalAttack : MonoBehaviour
 
         if (gameObject.GetComponent<InputKey>().isPlayer == 1)
         {
-            bulletShootPosition = new Vector3(20f, 0f, 0f);
+            bulletShootPosition = new Vector3(30f, 0f, 0f);
         }
         else if (gameObject.GetComponent<InputKey>().isPlayer == 2)
         {
-            bulletShootPosition = new Vector3(-20f, 0f, 0f);
+            bulletShootPosition = new Vector3(-30f, 0f, 0f);
         }
 
         StartCoroutine(Attack(nomalBullet));

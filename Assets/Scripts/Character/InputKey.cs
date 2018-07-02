@@ -6,6 +6,7 @@ public class InputKey : MonoBehaviour {
 
     public float speed;
     public int isPlayer;
+    public int canMove = 1;
     float spd;
 
 	// Use this for initialization
@@ -15,7 +16,7 @@ public class InputKey : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isPlayer == 1)
+        if (isPlayer == 1 && canMove == 1)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -35,7 +36,7 @@ public class InputKey : MonoBehaviour {
             }
         }
 
-        if (isPlayer == 2)
+        if (isPlayer == 2 && canMove == 1)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -63,13 +64,17 @@ public class InputKey : MonoBehaviour {
         {
             gameObject.GetComponent<HPManagement>().SkillUseTrigger();
         }
+        if (Input.GetKey(KeyCode.Y) && isPlayer == 1)
+        {
+            gameObject.GetComponent<HPManagement>().SkillGuageCancle();
+        }
         if (Input.GetKey(KeyCode.M) && isPlayer == 2)
         {
             gameObject.GetComponent<HPManagement>().AltSkillGuageUse();
         }
         if (Input.GetKeyUp(KeyCode.M) && isPlayer == 2)
         {
-            gameObject.GetComponent<HPManagement>().SkillUseTrigger();
+            gameObject.GetComponent<HPManagement>().SkillGuageCancle();
         }
     }
 }

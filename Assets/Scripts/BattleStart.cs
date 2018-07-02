@@ -12,7 +12,6 @@ public class BattleStart : MonoBehaviour {
     public int startHP;
     public Vector2 p1P;
     public Vector2 p2P;
-    public GameObject test;
 
 	// Use this for initialization
 	void Start () {
