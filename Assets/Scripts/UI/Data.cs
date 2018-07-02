@@ -13,5 +13,6 @@ public class Data : MonoBehaviour {
 	{
 		UI_Ch = GameObject.Find ("UI_Ch_SL");
 		UI_BG = GameObject.Find ("UI_BG_SL");
+		UI_BG.SetActive (false);
 	}
 }

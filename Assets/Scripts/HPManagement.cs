@@ -67,13 +67,8 @@ public class HPManagement : MonoBehaviour {
 
         skillGuage = 0;
         skillGuageStack = 0;
-        skillGuageStack = 0;
-
-
     }
-
-    // Update is called once per frame
-    void Update () {
+	void Update () {
         if (HP != HP_temp)
         {
             AltHP();

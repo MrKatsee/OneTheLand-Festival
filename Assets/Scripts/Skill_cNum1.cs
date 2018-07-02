@@ -40,7 +40,7 @@ public class Skill_cNum1 : MonoBehaviour {
             L_P2.gameObject.GetComponent<BattleStart>().p2P = myP;
             oppP = L_P1.gameObject.GetComponent<BattleStart>().p1P;
         }
-        target = oppP - myP;
+		target = oppP - myP;//나의 위치와 상대방 위치를 계산 (실시간)
 
         Debug.Log("myP: " + myP);
         Debug.Log("oppP: " + oppP);

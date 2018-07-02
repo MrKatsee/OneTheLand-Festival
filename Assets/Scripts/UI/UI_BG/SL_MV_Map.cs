@@ -8,16 +8,14 @@ public class SL_MV_Map : MonoBehaviour {
 	char[] SL={'m','a','p','1'};
 	string select;
 	public bool SL_Decide;
-	public GameObject UI_BG;
-	public GameObject UI_Ch;
-	// Use this for initialization
+	GameObject UI_BG;
+	GameObject UI_Ch;
 	void Start () {
 		Data.Map = 1;
-		//UI_Ch = Data.UI_Ch;
-		//UI_BG=Data.UI_BG;
+		UI_Ch = Data.UI_Ch;
+		UI_BG=Data.UI_BG;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		select = "";
 		if (Input.GetKeyDown (KeyCode.A)) {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ch_choice : MonoBehaviour {
-	public GameObject UIBG;
-	void start()
+	private GameObject UIBG;
+	void Start()
 	{
-		//UIBG = Data.UI_BG;
+		UIBG = Data.UI_BG;
 	}
 	void Update () {
 		//0이 되 둘 중 하가 false면 true가 됨
@@ -14,7 +14,7 @@ public class Ch_choice : MonoBehaviour {
 		{
 			//Ch_Time.timerstart = false;
 			gameObject.SetActive (false);
-			UIBG.gameObject.SetActive (true);
+			UIBG.SetActive (true);
 		}
 	}
 }
