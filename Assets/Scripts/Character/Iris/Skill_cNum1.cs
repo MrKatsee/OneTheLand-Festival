@@ -22,6 +22,9 @@ public class Skill_cNum1 : MonoBehaviour {
     public GameObject irisSkill1_AttackPreView1;
     public GameObject irisSkill2_Butterfly;
 
+    public int isPlayIrisBF;
+    public int isPlayIrisBF2;
+
     // Use this for initialization
     void Start () {
         isPlayer_C = gameObject.GetComponent<InputKey>().isPlayer;
@@ -54,9 +57,14 @@ public class Skill_cNum1 : MonoBehaviour {
             StartCoroutine(Iris_Skill1());
             Debug.Log("skill1");
         }
-        if (skillNum == 2)
+        if (skillNum == 2 && isPlayIrisBF == 0)
         {
             StartCoroutine(Iris_Skill2());
+            Debug.Log("skill2");
+        }
+        else if (skillNum == 2 && isPlayIrisBF2 == 0)
+        {
+            StartCoroutine(Iris_Skill2_2());
             Debug.Log("skill2");
         }
         if (skillNum == 3)
@@ -105,20 +113,76 @@ public class Skill_cNum1 : MonoBehaviour {
         gameObject.GetComponent<InputKey>().canMove = 1;
     }
 
+    public void StopIris_Skill2()
+    {
+        StopCoroutine(Iris_Skill2());
+    }
+
+    public void StopIris_Skill2_2()
+    {
+        StopCoroutine(Iris_Skill2_2());
+    }
+
     IEnumerator Iris_Skill2()
     {
         GameObject butterfly;
+
+        isPlayIrisBF = 1;
 
         targetLength = Vector2.Distance(oppP, myP);
 
         butterfly = Instantiate(irisSkill2_Butterfly, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.identity);
         butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().targetUnit_Skill = target;
+        butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().irisRef = gameObject;
+        butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().isPlayIrisSkill2 = 1;
         butterfly.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_C;
 
         yield return new WaitForSeconds(5f);
 
-        butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().IrisSkill2_Bomb();
-        Destroy(butterfly);
+        if (isPlayIrisBF == 0)
+        {
+            StopIris_Skill2();
+        }
+
+        if (isPlayIrisBF == 1)
+        {
+            butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().StopBF_Fly();
+            butterfly.gameObject.GetComponent<Bullet_IrisSkill2BF>().IrisSkill2_Bomb();
+            Destroy(butterfly);
+        }
+        
+        isPlayIrisBF = 0;
+    }
+
+    IEnumerator Iris_Skill2_2()
+    {
+        GameObject butterfly2;
+
+        isPlayIrisBF2 = 1;
+
+        targetLength = Vector2.Distance(oppP, myP);
+
+        butterfly2 = Instantiate(irisSkill2_Butterfly, transform.position + gameObject.GetComponent<NormalAttack>().bulletShootPosition, Quaternion.identity);
+        butterfly2.gameObject.GetComponent<Bullet_IrisSkill2BF>().targetUnit_Skill = target;
+        butterfly2.gameObject.GetComponent<Bullet_IrisSkill2BF>().irisRef = gameObject;
+        butterfly2.gameObject.GetComponent<Bullet_IrisSkill2BF>().isPlayIrisSkill2 = 2;
+        butterfly2.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_C;
+
+        yield return new WaitForSeconds(5f);
+
+        if (isPlayIrisBF2 == 2)
+        {
+            StopIris_Skill2_2();
+        }
+
+        if (isPlayIrisBF2 == 1)
+        {
+            butterfly2.gameObject.GetComponent<Bullet_IrisSkill2BF>().StopBF_Fly();
+            butterfly2.gameObject.GetComponent<Bullet_IrisSkill2BF>().IrisSkill2_Bomb();
+            Destroy(butterfly2);
+        }
+
+        isPlayIrisBF2 = 0;
     }
 }
 

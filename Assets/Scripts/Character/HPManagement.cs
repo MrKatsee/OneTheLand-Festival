@@ -284,6 +284,10 @@ public class HPManagement : MonoBehaviour {
         {
             if (gameObject.GetComponent<InputKey>().isPlayer != c.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet)
             {
+                if (c.GetComponent<BulletIdentifier>().isBullet == 1)
+                {
+                    c.GetComponent<Bullet_IrisSkill2BF>().StopBF_Fly();
+                }
                 Destroy(c.gameObject);
                 HP -= 1;
             }

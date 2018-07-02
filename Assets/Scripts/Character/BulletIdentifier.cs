@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletIdentifier : MonoBehaviour {
 
     public int isPlayer_Bullet;
+    public int isBullet;
 
     // Use this for initialization
     void Start () {
