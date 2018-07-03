@@ -164,7 +164,7 @@ public class HPManagement : MonoBehaviour {
         {
             skillGuage += 0.2f * Time.deltaTime;
         }
-
+			
         skillBar.fillAmount = skillGuage;
     }
 

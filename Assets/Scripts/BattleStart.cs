@@ -20,12 +20,13 @@ public class BattleStart : MonoBehaviour {
         {
             cNum = GameManager.Instance.characNum1;
             cNum = 1;
+            cNum = 2;
         }
 
         else if (pNum == 2)
         {
             cNum = GameManager.Instance.characNum2;
-            cNum = 2;
+            cNum = 1;
         }
 
         p_location = gameObject.transform.position;
@@ -41,7 +42,6 @@ public class BattleStart : MonoBehaviour {
             GameObject temp = Instantiate(Charac[0], p_location, Quaternion.identity);
             temp.transform.localScale = p_rotation;
             temp.GetComponent<InputKey>().isPlayer = pNum;
-            startHP = 3;
         }
 
         if (cNum == 2)
@@ -49,7 +49,6 @@ public class BattleStart : MonoBehaviour {
             GameObject temp = Instantiate(Charac[1], p_location, Quaternion.identity);
             temp.transform.localScale = p_rotation;
             temp.GetComponent<InputKey>().isPlayer = pNum;
-            startHP = 3;
         }
     }
 	
