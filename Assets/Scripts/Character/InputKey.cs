@@ -8,16 +8,19 @@ public class InputKey : MonoBehaviour {
     public int isPlayer;
     public int canMove = 1;
     float spd;
+    public bool gamePuase_Input;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		speed = 10;
         spd = speed * Time.deltaTime;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (isPlayer == 1 && canMove == 1)
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (isPlayer == 1 && canMove == 1 && gamePuase_Input == false)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -37,7 +40,7 @@ public class InputKey : MonoBehaviour {
             }
         }
 
-        if (isPlayer == 2 && canMove == 1)
+        if (isPlayer == 2 && canMove == 1 && gamePuase_Input == false)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -69,13 +72,19 @@ public class InputKey : MonoBehaviour {
         {
             gameObject.GetComponent<HPManagement>().SkillGuageCancle();
         }
-        if (Input.GetKey(KeyCode.M) && isPlayer == 2)
+        if (Input.GetKey(KeyCode.N) && isPlayer == 2)
         {
             gameObject.GetComponent<HPManagement>().AltSkillGuageUse();
         }
-        if (Input.GetKeyUp(KeyCode.M) && isPlayer == 2)
+        if (Input.GetKeyUp(KeyCode.N) && isPlayer == 2)
         {
             gameObject.GetComponent<HPManagement>().SkillGuageCancle();
         }
+        if (Input.GetKey(KeyCode.M) && isPlayer == 2)
+        {
+            gameObject.GetComponent<HPManagement>().SkillGuageCancle();
+        }
+
+        gamePuase_Input = GameManager.Instance.gamePause;
     }
 }

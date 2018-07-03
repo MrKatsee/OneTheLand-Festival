@@ -119,10 +119,12 @@ public class Bullet_IrisSkill2BF : MonoBehaviour {
     {
         irisSkill2EffectL = Instantiate(irisSkill2EffectLocation, transform.position, Quaternion.identity);
         isFlyEf = 1;
+        irisSkill2EffectL.GetComponent<Bullet_IrisSkill2Ef2>().isIrisSkill2Ef2 = 1;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4.5f);
 
         isFlyEf = 0;
+        irisSkill2EffectL.GetComponent<Bullet_IrisSkill2Ef2>().isIrisSkill2Ef2 = 0;
         Destroy(irisSkill2EffectL);
     }
 
@@ -139,6 +141,7 @@ public class Bullet_IrisSkill2BF : MonoBehaviour {
             irisBombBullet[i] = Instantiate(irisSkillBombBullet, gameObject.transform.position, Quaternion.Euler(0, 0, irisBombBulletRotation));
             irisBombBullet[i].GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_IrisSkill;
             irisBombBullet[i].GetComponent<Bullet_IrisSkill2BB>().IS2BB_Angle = irisBombBulletRotation;
+            irisBombBullet[i].transform.parent = GameObject.Find("BulletManager").transform;
             Destroy(irisBombBullet[i], 5f);
         }
         for (int i = 0; i < 12; i++)

@@ -17,9 +17,11 @@ public class HPManagement : MonoBehaviour {
     float skillGuageStack;
     public int isCharacter;
     public int skillTrigger;
+    bool gamePuase_HP;
 
     // Use this for initialization
     void Start () {
+
         P1HP[0] = GameObject.Find("U_P1HP1");
         P1HP[1] = GameObject.Find("U_P1HP2");
         P1HP[2] = GameObject.Find("U_P1HP3");
@@ -31,6 +33,7 @@ public class HPManagement : MonoBehaviour {
         P2HP[2] = GameObject.Find("U_P2HP3");
         P2HP[3] = GameObject.Find("U_P2HP4");
         P2HP[4] = GameObject.Find("U_P2HP5");
+
 
         HP_temp = HP;
         HP_Max = HP;
@@ -69,6 +72,8 @@ public class HPManagement : MonoBehaviour {
         skillGuageStack = 0;
     }
 	void Update () {
+        gamePuase_HP = GameManager.Instance.gamePause;
+
         if (HP != HP_temp)
         {
             AltHP();
@@ -155,7 +160,7 @@ public class HPManagement : MonoBehaviour {
 
     void AltSkillGuage()
     {
-        if (skillGuage <= 1f)
+        if (skillGuage <= 1f && gamePuase_HP == false)
         {
             skillGuage += 0.2f * Time.deltaTime;
         }

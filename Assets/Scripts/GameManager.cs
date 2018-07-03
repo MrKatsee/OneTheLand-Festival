@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public int characNum1 = 1;
     public int characNum2 = 2;
+    public bool gamePause;
     public int mapNum;
 
 }

@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Bullet_IrisSkill2BB : MonoBehaviour
 {
-
-    int speed_IrisSkill2BB;
+    float speed_IrisSkill2BB;
     Vector2 IrisSkill2BB;
     public float IS2BB_Angle;
 
     // Use this for initialization
     void Start()
     {
+        gameObject.GetComponent<BulletIdentifier>().bulletSpd = 20f;
+
         Vector2 test = Vector2.right;
         IS2BB_Angle *= 6.28f;
         test.x = Mathf.Cos(IS2BB_Angle);
         test.y = Mathf.Sin(IS2BB_Angle);
-        speed_IrisSkill2BB = 200;
+        speed_IrisSkill2BB = 200f;
         GetComponent<Rigidbody2D>().velocity = speed_IrisSkill2BB * test;
 
         StartCoroutine(IrisSkill2BBEf());
@@ -26,7 +27,10 @@ public class Bullet_IrisSkill2BB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.GetComponent<BulletIdentifier>().bulletSpd == 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        }
     }
 
     IEnumerator IrisSkill2BBEf()

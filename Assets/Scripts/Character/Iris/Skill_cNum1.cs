@@ -21,6 +21,7 @@ public class Skill_cNum1 : MonoBehaviour {
     public GameObject irisSkill1_AttackVisual3;
     public GameObject irisSkill1_AttackPreView1;
     public GameObject irisSkill2_Butterfly;
+    public GameObject irisSkill4_Checker;
 
     public int isPlayIrisBF;
     public int isPlayIrisBF2;
@@ -73,6 +74,7 @@ public class Skill_cNum1 : MonoBehaviour {
         }
         if (skillNum == 4)
         {
+            StartCoroutine(Iris_Skill4());
             Debug.Log("skill4");
         }
 
@@ -184,5 +186,22 @@ public class Skill_cNum1 : MonoBehaviour {
 
         isPlayIrisBF2 = 0;
     }
+
+    IEnumerator Iris_Skill4()
+    {
+        GameObject ectasyChecker;
+
+        GameManager.Instance.gamePause = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        ectasyChecker = Instantiate(irisSkill4_Checker, new Vector3(-700f, 0f, 0f), Quaternion.identity);
+
+        yield return new WaitForSeconds(1f);
+
+        GameManager.Instance.gamePause = false;
+
+    }
+
 }
 

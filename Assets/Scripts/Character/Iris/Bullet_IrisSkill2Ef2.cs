@@ -9,6 +9,7 @@ public class Bullet_IrisSkill2Ef2 : MonoBehaviour
     GameObject[] skillParticle = new GameObject[12];
     public GameObject irisSkill2_Particle;
     Vector3[] randomPosition = new Vector3[12];
+    public int isIrisSkill2Ef2;
 
     // Use this for initialization
     void Start()
@@ -52,6 +53,9 @@ public class Bullet_IrisSkill2Ef2 : MonoBehaviour
 
             i++;
 
+            if (isIrisSkill2Ef2 == 0)
+                yield break;
+
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -59,6 +63,7 @@ public class Bullet_IrisSkill2Ef2 : MonoBehaviour
     IEnumerator StopIrisSkill2Particle()
     {
         yield return new WaitForSeconds(4.9f);
+        isIrisSkill2Ef2 = 0;
 
         StopCoroutine(IrisSkill2Particle());
         StopCoroutine(StopIrisSkill2Particle());
