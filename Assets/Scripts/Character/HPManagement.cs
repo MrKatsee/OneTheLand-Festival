@@ -164,7 +164,7 @@ public class HPManagement : MonoBehaviour {
         {
             skillGuage += 0.2f * Time.deltaTime;
         }
-			
+
         skillBar.fillAmount = skillGuage;
     }
 
@@ -173,7 +173,8 @@ public class HPManagement : MonoBehaviour {
         if (skillGuageStack <= 1f && skillGuageStack <= skillGuage)
         {
             skillGuageStack += 0.5f * Time.deltaTime;
-        } 
+            Debug.Log("2");
+        }
     }
 
     public void SkillUseTrigger()
