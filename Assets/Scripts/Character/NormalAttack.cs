@@ -44,7 +44,7 @@ public class NormalAttack : MonoBehaviour
                 bullet_temp.transform.position = bulletShootPosition + gameObject.transform.position;
                 bullet_temp.transform.parent = GameObject.Find("BulletManager").transform;
                 bullet_temp.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
-                Destroy(bullet_temp, 5f);
+                Destroy(bullet_temp, 10f);
             }
             yield return new WaitForSeconds(1f * spd);
         }

@@ -7,8 +7,9 @@ public class CharacterFrameImage : MonoBehaviour {
 
     public Image frame;
     public Sprite[] characImage = new Sprite[7];
-    int cNum;
+    public int cNum_Frame;
     public int isPlayer_frame;
+    GameObject frameTemp;
 
 	// Use this for initialization
 	void Start () {
@@ -16,16 +17,22 @@ public class CharacterFrameImage : MonoBehaviour {
 
         if (isPlayer_frame == 1)
         {
-            cNum = GameObject.Find("L_P1Start").GetComponent<BattleStart>().cNum;
+            frameTemp = GameObject.Find("L_P1Start");
+            cNum_Frame = frameTemp.GetComponent<BattleStart>().cNum;
         }
-        if (isPlayer_frame == 2)
+        else if (isPlayer_frame == 2)
         {
-            cNum = GameObject.Find("L_P2Start").GetComponent<BattleStart>().cNum;
+            frameTemp = GameObject.Find("L_P2Start");
+            cNum_Frame = frameTemp.GetComponent<BattleStart>().cNum;
         }
 
-        if (cNum == 1)
+        if (cNum_Frame == 1)
         {
             frame.sprite = characImage[0];
+        }
+        if (cNum_Frame == 2)
+        {
+            frame.sprite = characImage[1];
         }
     }
 	

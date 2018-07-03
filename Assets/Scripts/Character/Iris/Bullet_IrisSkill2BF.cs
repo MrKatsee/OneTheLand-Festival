@@ -142,7 +142,7 @@ public class Bullet_IrisSkill2BF : MonoBehaviour {
             irisBombBullet[i].GetComponent<BulletIdentifier>().isPlayer_Bullet = isPlayer_IrisSkill;
             irisBombBullet[i].GetComponent<Bullet_IrisSkill2BB>().IS2BB_Angle = irisBombBulletRotation;
             irisBombBullet[i].transform.parent = GameObject.Find("BulletManager").transform;
-            Destroy(irisBombBullet[i], 5f);
+            Destroy(irisBombBullet[i], 10f);
         }
         for (int i = 0; i < 12; i++)
         {
