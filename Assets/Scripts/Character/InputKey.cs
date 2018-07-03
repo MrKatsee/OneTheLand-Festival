@@ -7,15 +7,15 @@ public class InputKey : MonoBehaviour {
     public float speed;
     public int isPlayer;
     public int canMove = 1;
-    float spd;
-
+	float spd;
 	// Use this for initialization
 	void Start () {
-        spd = speed * Time.deltaTime;
+		speed = 10;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		spd = speed * Time.deltaTime;
         if (isPlayer == 1 && canMove == 1)
         {
             if (Input.GetKey(KeyCode.W))

@@ -19,13 +19,13 @@ public class BattleStart : MonoBehaviour {
         if (pNum == 1)
         {
             cNum = GameManager.Instance.characNum1;
-            cNum = 1;
+            cNum = 2;
         }
 
         else if (pNum == 2)
         {
             cNum = GameManager.Instance.characNum2;
-            cNum = 2;
+            cNum = 1;
         }
 
         p_location = gameObject.transform.position;

@@ -21,15 +21,9 @@ public class Diana_skill_1 : MonoBehaviour {
 		skillNum = gameObject.GetComponent<HPManagement>().skillTrigger;
 		if (skillNum == 1)
 		{
-			Debug.Log("skill1");
-			Diana_passive.Bullet_count = 1;
-			gameObject.GetComponent<InputKey>().speed= 12;
-			Invoke ("slow", 1f*Time.deltaTime);
+			gameObject.GetComponent<Diana_passive>().skill1();
+			Debug.Log(gameObject.GetComponent<InputKey>().speed);
 		}
 		gameObject.GetComponent<HPManagement>().skillTrigger = 0;
-	}
-	void slow()
-	{
-		gameObject.GetComponent<InputKey>().speed = 10;
 	}
 }
