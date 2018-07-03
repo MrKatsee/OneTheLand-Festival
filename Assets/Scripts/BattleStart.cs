@@ -41,7 +41,6 @@ public class BattleStart : MonoBehaviour {
             GameObject temp = Instantiate(Charac[0], p_location, Quaternion.identity);
             temp.transform.localScale = p_rotation;
             temp.GetComponent<InputKey>().isPlayer = pNum;
-            startHP = 3;
         }
 
         if (cNum == 2)
@@ -49,7 +48,6 @@ public class BattleStart : MonoBehaviour {
             GameObject temp = Instantiate(Charac[1], p_location, Quaternion.identity);
             temp.transform.localScale = p_rotation;
             temp.GetComponent<InputKey>().isPlayer = pNum;
-            startHP = 3;
         }
     }
 	

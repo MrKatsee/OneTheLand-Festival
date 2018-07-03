@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class InputKey : MonoBehaviour {
 
-    public static float speed;
+    public float speed;
     public int isPlayer;
     public int canMove = 1;
     float spd;
 
 	// Use this for initialization
 	void Start () {
-		speed = 10;
         spd = speed * Time.deltaTime;
 	}
 	
@@ -72,8 +71,13 @@ public class InputKey : MonoBehaviour {
         if (Input.GetKey(KeyCode.M) && isPlayer == 2)
         {
             gameObject.GetComponent<HPManagement>().AltSkillGuageUse();
-        }
-        if (Input.GetKeyUp(KeyCode.M) && isPlayer == 2)
+
+		}
+		if (Input.GetKey(KeyCode.M) && isPlayer == 2)
+		{
+			gameObject.GetComponent<HPManagement>().SkillUseTrigger();
+		}
+        if (Input.GetKeyUp(KeyCode.N) && isPlayer == 2)
         {
             gameObject.GetComponent<HPManagement>().SkillGuageCancle();
         }
