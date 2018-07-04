@@ -12,7 +12,7 @@ public class Diana_passive : MonoBehaviour {
 	public GameObject nomalBullet;
 	GameObject bullet_temp;
 	Vector3 bulletShootPosition = new Vector3(0f, 0f, 0f);
-	public static int Bullet_count;
+	public int Bullet_count;
 	float time;
 	bool reload;
 
@@ -40,7 +40,7 @@ public class Diana_passive : MonoBehaviour {
 			Bullet_UI_temp[i]=Instantiate(Bullet_UI);
 			Bullet_UI_temp[i].transform.SetParent(GameObject.Find ("BattleUI").GetComponent<Canvas> ().transform, false);
 			Bullet_UI_temp[i].GetComponent<RectTransform> ().position = new Vector3 (-400f+i*40f, -195f, 0f);
-            Bullet_UI_temp[i].transform.localScale = new Vector3(((float)gameObject.GetComponent<InputKey>().isPlayer-1.5f)*(-2f), 1f,0f);
+			Bullet_UI_temp[i].transform.localScale = new Vector3(((float)gameObject.GetComponent<InputKey>().isPlayer-1.5f)*(-2f), 1f,0f);
 		}
 
         for (int i = 0; i < Bullet_count && gameObject.GetComponent<InputKey>().isPlayer == 2; i++)

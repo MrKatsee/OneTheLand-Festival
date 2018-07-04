@@ -24,8 +24,11 @@ public class Diana_skill_Active : MonoBehaviour {
 		{
 			gameObject.GetComponent<Diana_passive>().skill1();
 		}
-		if(Input.GetKeyDown(KeyCode.A))
-			Debug.Log(skillNum);
+		if (skillNum == 2)
+		{
+			Debug.Log ("helloworld");
+			gameObject.GetComponent<Diana_skill_2>().skill2();
+		}
 		gameObject.GetComponent<HPManagement>().skillTrigger = 0;
 	}
 }

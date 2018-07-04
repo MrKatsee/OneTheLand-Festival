@@ -204,7 +204,7 @@ public class HPManagement : MonoBehaviour {
         if (isCharacter == 2)
         {
             if (skillGuageStack >= 0.25f)
-            {
+			{
                 skillTrigger = 1;
             }
             if (skillGuageStack >= 0.5f)
