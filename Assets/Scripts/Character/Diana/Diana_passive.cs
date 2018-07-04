@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Diana_passive : MonoBehaviour {
 	
-	public GameObject Bullet_UI_Fill;
-	public GameObject Bullet_UI_Null;
+	public GameObject Bullet_UI;
 	GameObject[] Bullet_UI_temp;
 	int Bullet_Speed;
 	float spd;
@@ -15,9 +14,11 @@ public class Diana_passive : MonoBehaviour {
 	Vector3 bulletShootPosition = new Vector3(0f, 0f, 0f);
 	public static int Bullet_count;
 	float time;
+	bool reload;
 
 	void Awake()
 	{
+		reload = false;
 		Bullet_Speed=50;
 		spd = Bullet_Speed * Time.deltaTime;
 	}
@@ -36,7 +37,7 @@ public class Diana_passive : MonoBehaviour {
 		}
 
 		for (int i = 0; i < Bullet_count && gameObject.GetComponent<InputKey>().isPlayer == 1; i++) {
-			Bullet_UI_temp[i]=Instantiate(Bullet_UI_Fill);
+			Bullet_UI_temp[i]=Instantiate(Bullet_UI);
 			Bullet_UI_temp[i].transform.SetParent(GameObject.Find ("BattleUI").GetComponent<Canvas> ().transform, false);
 			Bullet_UI_temp[i].GetComponent<RectTransform> ().position = new Vector3 (-400f+i*40f, -195f, 0f);
             Bullet_UI_temp[i].transform.localScale = new Vector3(((float)gameObject.GetComponent<InputKey>().isPlayer-1.5f)*(-2f), 1f,0f);
@@ -44,12 +45,11 @@ public class Diana_passive : MonoBehaviour {
 
         for (int i = 0; i < Bullet_count && gameObject.GetComponent<InputKey>().isPlayer == 2; i++)
         {
-            Bullet_UI_temp[i] = Instantiate(Bullet_UI_Fill);
+            Bullet_UI_temp[i] = Instantiate(Bullet_UI);
             Bullet_UI_temp[i].transform.SetParent(GameObject.Find("BattleUI").GetComponent<Canvas>().transform, false);
-            Bullet_UI_temp[i].GetComponent<RectTransform>().position = new Vector3(400f + (-1) * i * 40f, -195f, 0f);
+            Bullet_UI_temp[i].GetComponent<RectTransform>().position = new Vector3(400f -i * 40f, -195f, 0f);
             Bullet_UI_temp[i].transform.localScale = new Vector3(((float)gameObject.GetComponent<InputKey>().isPlayer - 1.5f) * (-2f), 1f, 0f);
         }
-
         StartCoroutine(Diana_Attack(nomalBullet));
 	}
 	void Update () {
@@ -58,6 +58,7 @@ public class Diana_passive : MonoBehaviour {
 	}
 	public void skill1()
 	{
+		reload = true;
 		Bullet_count = 6;
 		gameObject.GetComponent<InputKey>().speed= 12;
 		Invoke ("slow", 3f);
@@ -73,16 +74,30 @@ public class Diana_passive : MonoBehaviour {
 			if (Bullet_count < 1) {
 				Bullet_count = 6;
 				for (int i = 0; i < Bullet_count; i++) {
-					Bullet_UI_temp[i]=Bullet_UI_Fill;
+					Bullet_UI_temp[i].GetComponent<Image>().color=new Color(10f/255f*206f,10f,10f/255f*68f,1);
 				}
-				yield return new WaitForSeconds(1.5f * spd);
-			} else {
-				Bullet_UI_temp[(Bullet_count--)-1]=Bullet_UI_Null;
+				for (int i = 0; i < 15; i++) {
+					if(reload==false)
+					{
+						yield return new WaitForSeconds(0.1f * spd);
+					}
+				}
+			}
+			else {
+				if (reload == true) {
+					for (int i = 5; i >= 0; i--)
+					{
+						Bullet_UI_temp[i].GetComponent<Image>().color=new Color(10f/255f*206f,10f,10f/255f*68f,1);
+					}
+					reload = false;
+				}
+
 				bullet_temp = Instantiate(Diana_Bullet);
                 bullet_temp.transform.parent = GameObject.Find("BulletManager").transform;
                 bullet_temp.transform.position = bulletShootPosition + gameObject.transform.position;
 				bullet_temp.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
 				Destroy(bullet_temp, 5f);
+				Bullet_UI_temp[(Bullet_count--)-1].GetComponent<Image>().color=new Color(10f/255f*76f,10f/255f*98f,10f/255f*17f,0);
 				yield return new WaitForSeconds(0.3f * spd);
 			}
 		}
