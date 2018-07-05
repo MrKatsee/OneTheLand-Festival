@@ -39,26 +39,6 @@ public class Skill_cNum2 : MonoBehaviour
             oppP = L_P1.gameObject.GetComponent<BattleStart>().p1P;
         }
         target = oppP - myP;
-
-        skillNum = gameObject.GetComponent<HPManagement>().skillTrigger;
-
-        if (skillNum == 1)
-        {
-            Debug.Log("skill1");
-        }
-        if (skillNum == 2)
-        {
-            Debug.Log("skill2");
-        }
-        if (skillNum == 3)
-        {
-            Debug.Log("skill3");
-        }
-        if (skillNum == 4)
-        {
-            Debug.Log("skill4");
-        }
-
-        gameObject.GetComponent<HPManagement>().skillTrigger = 0;
+        
     }
 }

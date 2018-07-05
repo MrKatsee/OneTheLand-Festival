@@ -39,6 +39,8 @@ public class Trigger_IrisSkill4 : MonoBehaviour {
             oppP_IrisSkill = L_P1_IrisSkill.gameObject.GetComponent<BattleStart>().p1P;
         }
 
+        Debug.Log(oppP_IrisSkill);
+
     }
 
     void OnTriggerEnter2D(Collider2D c)
