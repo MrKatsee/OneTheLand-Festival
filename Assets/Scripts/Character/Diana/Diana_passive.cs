@@ -11,7 +11,7 @@ public class Diana_passive : MonoBehaviour {
 	float spd;
 	public GameObject nomalBullet;
 	GameObject bullet_temp;
-	Vector3 bulletShootPosition = new Vector3(0f, 0f, 0f);
+	public Vector3 bulletShootPosition = new Vector3(0f, 0f, 0f);
 	public int Bullet_count;
 	float time;
 	bool reload;

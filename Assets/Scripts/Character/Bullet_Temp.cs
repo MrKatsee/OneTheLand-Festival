@@ -7,6 +7,7 @@ public class Bullet_Temp : MonoBehaviour {
     public int isPlayer_BulletTemp;
     float speed_BulletTemp;
     Vector3 bullet_Rotation;
+	public float angle= 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -39,8 +40,7 @@ public class Bullet_Temp : MonoBehaviour {
         {
             speed_BulletTemp *= -10;
         }
-        GetComponent<Rigidbody2D>().velocity = speed_BulletTemp * Vector2.right;
-
+		GetComponent<Rigidbody2D>().velocity = speed_BulletTemp * new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad));
     }
 
     void FixedUpdate()

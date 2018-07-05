@@ -203,15 +203,15 @@ public class HPManagement : MonoBehaviour {
 
         if (isCharacter == 2)
         {
-            if (skillGuageStack >= 0.25f)
+            if (skillGuageStack >= 0.1f)
 			{
                 skillTrigger = 1;
             }
-            if (skillGuageStack >= 0.5f)
+            if (skillGuageStack >= 0.3f)
             {
                 skillTrigger = 2;
             }
-            if (skillGuageStack >= 0.75f)
+            if (skillGuageStack >= 0.5f)
             {
                 skillTrigger = 3;
             }
@@ -256,17 +256,17 @@ public class HPManagement : MonoBehaviour {
             {
                 skillBarUsable.fillAmount = 0f;
             }
-            if (skillGuageStack >= 0.25f)
+            if (skillGuageStack >= 0.1f)
             {
-                skillBarUsable.fillAmount = 0.25f;
+                skillBarUsable.fillAmount = 0.1f;
+            }
+            if (skillGuageStack >= 0.3f)
+            {
+                skillBarUsable.fillAmount = 0.3f;
             }
             if (skillGuageStack >= 0.5f)
             {
                 skillBarUsable.fillAmount = 0.5f;
-            }
-            if (skillGuageStack >= 0.75f)
-            {
-                skillBarUsable.fillAmount = 0.75f;
             }
             if (skillGuageStack >= 1f)
             {
