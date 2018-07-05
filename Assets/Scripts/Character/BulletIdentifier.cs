@@ -7,6 +7,7 @@ public class BulletIdentifier : MonoBehaviour {
     public int isPlayer_Bullet;
     public float bulletSpd;
     public int isBullet;
+    public bool isDestroiable = true;
     GameObject isInBulletManager;
 
     // Use this for initialization

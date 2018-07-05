@@ -28,7 +28,10 @@ public class BulletMap1_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (gameObject.GetComponent<BulletIdentifier>().bulletSpd == 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        }
 
     }
 
