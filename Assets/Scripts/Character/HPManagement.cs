@@ -290,7 +290,10 @@ public class HPManagement : MonoBehaviour {
                 {
                     c.GetComponent<Bullet_IrisSkill2BF>().StopBF_Fly();
                 }
-                Destroy(c.gameObject);
+                if (c.gameObject.GetComponent<BulletIdentifier>().isDestroiable == true)
+                {
+                    Destroy(c.gameObject);
+                }
                 HP -= 1;
             }
         }

@@ -9,13 +9,14 @@ public class InputKey : MonoBehaviour {
     public int canMove = 1;
     float spd;
     public bool gamePuase_Input;
-
+    GameObject wall;
 
     // Use this for initialization
     void Start () {
 		speed = 10;
         spd = speed * Time.deltaTime;
 
+        wall = GameObject.Find("Wall");
     }
 
     // Update is called once per frame
@@ -78,7 +79,6 @@ public class InputKey : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.M) && isPlayer == 2)
         {
-            Debug.Log("1");
             gameObject.GetComponent<HPManagement>().AltSkillGuageUse();
         }
 		if (Input.GetKeyUp(KeyCode.M) && isPlayer == 2)
@@ -92,4 +92,6 @@ public class InputKey : MonoBehaviour {
 
         gamePuase_Input = GameManager.Instance.gamePause;
     }
+
+   
 }
