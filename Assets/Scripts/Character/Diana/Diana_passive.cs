@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Diana_passive : MonoBehaviour {
+	
 	public GameObject Bullet_UI;
 	GameObject[] Bullet_UI_temp;
 	int Bullet_Speed;
@@ -14,7 +15,6 @@ public class Diana_passive : MonoBehaviour {
 	public int Bullet_count;
 	float time;
 	bool reload;
-	public bool skill4_use;
 
 	void Awake()
 	{
@@ -71,40 +71,34 @@ public class Diana_passive : MonoBehaviour {
 	{
 		while (true)
 		{
-			if (skill4_use == true) {
-
-				yield return null;
-			} else {
-
-				if (Bullet_count < 1) {
-					Bullet_count = 6;
-					for (int i = 0; i < Bullet_count; i++) {
+			if (Bullet_count < 1) {
+				Bullet_count = 6;
+				for (int i = 0; i < Bullet_count; i++) {
+					Bullet_UI_temp[i].GetComponent<Image>().color=new Color(10f/255f*206f,10f,10f/255f*68f,1);
+				}
+				for (int i = 0; i < 15; i++) {
+					if(reload==false)
+					{
+						yield return new WaitForSeconds(0.1f * spd);
+					}
+				}
+			}
+			else {
+				if (reload == true) {
+					for (int i = 5; i >= 0; i--)
+					{
 						Bullet_UI_temp[i].GetComponent<Image>().color=new Color(10f/255f*206f,10f,10f/255f*68f,1);
 					}
-					for (int i = 0; i < 15; i++) {
-						if(reload==false)
-						{
-							yield return new WaitForSeconds(0.1f * spd);
-						}
-					}
+					reload = false;
 				}
-				else {
-					if (reload == true) {
-						for (int i = 5; i >= 0; i--)
-						{
-							Bullet_UI_temp[i].GetComponent<Image>().color=new Color(10f/255f*206f,10f,10f/255f*68f,1);
-						}
-						reload = false;
-					}
 
-					bullet_temp = Instantiate(Diana_Bullet);
-					bullet_temp.transform.parent = GameObject.Find("BulletManager").transform;
-					bullet_temp.transform.position = bulletShootPosition + gameObject.transform.position;
-					bullet_temp.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
-					Destroy(bullet_temp, 5f);
-					Bullet_UI_temp[(Bullet_count--)-1].GetComponent<Image>().color=new Color(10f/255f*76f,10f/255f*98f,10f/255f*17f,0);
-					yield return new WaitForSeconds(0.3f * spd);
-				}
+				bullet_temp = Instantiate(Diana_Bullet);
+                bullet_temp.transform.parent = GameObject.Find("BulletManager").transform;
+                bullet_temp.transform.position = bulletShootPosition + gameObject.transform.position;
+				bullet_temp.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
+				Destroy(bullet_temp, 5f);
+				Bullet_UI_temp[(Bullet_count--)-1].GetComponent<Image>().color=new Color(10f/255f*76f,10f/255f*98f,10f/255f*17f,0);
+				yield return new WaitForSeconds(0.3f * spd);
 			}
 		}
 	}
