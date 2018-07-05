@@ -18,7 +18,7 @@ public class HPManagement : MonoBehaviour {
     public int isCharacter;
     public int skillTrigger;
     bool gamePuase_HP;
-
+	public bool use=true;
     // Use this for initialization
     void Start () {
 
@@ -173,7 +173,6 @@ public class HPManagement : MonoBehaviour {
         if (skillGuageStack <= 1f && skillGuageStack <= skillGuage)
         {
             skillGuageStack += 0.5f * Time.deltaTime;
-            Debug.Log("2");
         }
     }
 
@@ -203,7 +202,7 @@ public class HPManagement : MonoBehaviour {
 
         if (isCharacter == 2)
         {
-            if (skillGuageStack >= 0.1f)
+			if (use==true&&skillGuageStack >= 0.1f)
 			{
                 skillTrigger = 1;
             }
@@ -256,7 +255,7 @@ public class HPManagement : MonoBehaviour {
             {
                 skillBarUsable.fillAmount = 0f;
             }
-            if (skillGuageStack >= 0.1f)
+			if (use==true&&skillGuageStack >= 0.1f)
             {
                 skillBarUsable.fillAmount = 0.1f;
             }
