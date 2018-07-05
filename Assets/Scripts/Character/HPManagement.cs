@@ -281,13 +281,11 @@ public class HPManagement : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        Debug.Log("a");
+
         if (c.tag == "Bullet")
         {
-            Debug.Log("b");
             if (gameObject.GetComponent<InputKey>().isPlayer != c.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet)
             {
-                Debug.Log("c");
                 if (c.GetComponent<BulletIdentifier>().isBullet == 1)
                 {
                     c.GetComponent<Bullet_IrisSkill2BF>().StopBF_Fly();
