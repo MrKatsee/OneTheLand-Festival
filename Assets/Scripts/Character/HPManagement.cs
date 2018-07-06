@@ -224,18 +224,22 @@ public class HPManagement : MonoBehaviour {
             if (skillGuageStack >= 0.25f)
             {
                 skillTrigger = 1;
+                skillGuage -= 0.25f;
             }
             if (skillGuageStack >= 0.5f)
             {
                 skillTrigger = 2;
+                skillGuage -= 0.25f;
             }
             if (skillGuageStack >= 0.75f)
             {
                 skillTrigger = 3;
+                skillGuage -= 0.25f;
             }
             if (skillGuageStack >= 1f)
             {
                 skillTrigger = 4;
+                skillGuage -= 0.25f;
             }
             skillGuageStack = 0f;
         }
@@ -245,18 +249,22 @@ public class HPManagement : MonoBehaviour {
 			if (use==true&&skillGuageStack >= 0.1f)
 			{
                 skillTrigger = 1;
+                skillGuage -= 0.10f;
             }
             if (skillGuageStack >= 0.3f)
             {
                 skillTrigger = 2;
+                skillGuage -= 0.20f;
             }
             if (skillGuageStack >= 0.5f)
             {
                 skillTrigger = 3;
+                skillGuage -= 0.20f;
             }
             if (skillGuageStack >= 1f)
             {
                 skillTrigger = 4;
+                skillGuage -= 0.50f;
             }
             skillGuageStack = 0f;
         }
