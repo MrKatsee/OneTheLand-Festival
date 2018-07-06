@@ -24,6 +24,8 @@ public class Skill_cNum1 : MonoBehaviour {
     public GameObject irisSkill4_Checker;
     public GameObject irisSkillCutIn;
 
+    
+
     public int isPlayIrisBF;
     public int isPlayIrisBF2;
 
@@ -193,26 +195,11 @@ public class Skill_cNum1 : MonoBehaviour {
         GameObject ectasyChecker;
         GameObject cutIn;
 
-        GameManager.Instance.gamePause = true;
 
-        cutIn = Instantiate(irisSkillCutIn, new Vector3(-1344f, 250f, 0f), Quaternion.identity);
-
-        for (int i = 0; i < 96; i += 8)
-        {
-            cutIn.transform.position += new Vector3(112f, 0f, 0f);
-            yield return new WaitForSeconds(0.01f);
-        }
+        cutIn = Instantiate(irisSkillCutIn, new Vector3(-700f, 250f, 0f), Quaternion.identity);
 
         yield return new WaitForSeconds(0.5f);
 
-        for (int i = 96; i > 0; i -= 8)
-        {
-            cutIn.transform.position += new Vector3(112f, 0f, 0f);
-            yield return new WaitForSeconds(0.01f);
-        }
-        cutIn.transform.position += new Vector3(56f, 0f, 0f);
-
-        Destroy(cutIn.gameObject);
 
         ectasyChecker = Instantiate(irisSkill4_Checker, new Vector3(-700f, 0f, 0f), Quaternion.identity);
         ectasyChecker.GetComponent<Trigger_IrisSkill4>().isPlayer_IrisSkill = isPlayer_C;

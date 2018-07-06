@@ -2,31 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager 
 {
-	public static GameManager Instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-	void Awake()
+	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
+    public static GameManager Instance
+    {
+        get { return GetInstance(); }
+    }
+    public static GameManager GetInstance()
 	{
-		if (Instance == null)
-			Instance = this;
- 
-		else if (Instance != this)
-			Destroy(gameObject);    
- 
-		DontDestroyOnLoad(gameObject);
- 
-		InitGame();
-	}
- 
-	//Initializes the game for each level.
-	void InitGame()
+		if (instance == null)
+            instance = new GameManager();
+        return instance;
+    }
+
+
+    GameManager()
+    {
+        InitGame();
+    }
+
+    //Initializes the game for each level.
+    void InitGame()
 	{
-		
-	}
- 
-	void Update()
-	{
- 
+
 	}
 
     public int characNum1 = 1;

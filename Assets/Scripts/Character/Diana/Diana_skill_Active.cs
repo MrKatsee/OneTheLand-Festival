@@ -11,7 +11,7 @@ public class Diana_skill_Active : MonoBehaviour {
 	GameObject L_P1;
 	GameObject L_P2;
 	public GameObject DianaSkillCutIn;
-	public bool skill4_end=false;
+	public bool skill4_end = false;
 	// Use this for initialization
 	void Start () {
 		wing = GameObject.Find ("Wing");

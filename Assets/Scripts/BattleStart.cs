@@ -14,8 +14,8 @@ public class BattleStart : MonoBehaviour {
     public Vector2 p2P;
 
 	// Use this for initialization
-	void Start () {
-        //character selection
+    void Awake()
+    {
         if (pNum == 1)
         {
             cNum = GameManager.Instance.characNum1;
@@ -27,6 +27,11 @@ public class BattleStart : MonoBehaviour {
             cNum = GameManager.Instance.characNum2;
             cNum = 2;
         }
+    }
+
+	void Start () {
+        //character selection
+        
 
         p_location = gameObject.transform.position;
 
