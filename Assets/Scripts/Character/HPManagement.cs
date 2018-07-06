@@ -19,6 +19,8 @@ public class HPManagement : MonoBehaviour {
     public int skillTrigger;
     bool gamePuase_HP;
 	public bool use=true;
+    bool isSuper = false;
+
     // Use this for initialization
     void Start () {
 
@@ -94,31 +96,50 @@ public class HPManagement : MonoBehaviour {
 
         if (gameObject.GetComponent<InputKey>().isPlayer == 1)
         {
-            if (HP == HP_temp + 1)
+            if (HP == 1)
             {
-                if (HP == 1)
-                    P1HP[0].SetActive(true);
-                if (HP == 2)
-                    P1HP[1].SetActive(true);
-                if (HP == 3)
-                    P1HP[2].SetActive(true);
-                if (HP == 4)
-                    P1HP[3].SetActive(true);
-                if (HP == 5)
-                    P1HP[4].SetActive(true);
+
+                P1HP[0].SetActive(true);
+                P1HP[1].SetActive(false);
+                P1HP[2].SetActive(false);
+                P1HP[3].SetActive(false);
+                P1HP[4].SetActive(false);
             }
-            if (HP == HP_temp - 1)
+            if (HP == 2)
             {
-                if (HP == 0)
-                    P1HP[0].SetActive(false);
-                if (HP == 1)
-                    P1HP[1].SetActive(false);
-                if (HP == 2)
-                    P1HP[2].SetActive(false);
-                if (HP == 3)
-                    P1HP[3].SetActive(false);
-                if (HP == 4)
-                    P1HP[4].SetActive(false);
+
+                P1HP[0].SetActive(true);
+                P1HP[1].SetActive(true);
+                P1HP[2].SetActive(false);
+                P1HP[3].SetActive(false);
+                P1HP[4].SetActive(false);
+            }
+            if (HP == 3)
+            {
+
+                P1HP[0].SetActive(true);
+                P1HP[1].SetActive(true);
+                P1HP[2].SetActive(true);
+                P1HP[3].SetActive(false);
+                P1HP[4].SetActive(false);
+            }
+            if (HP == 4)
+            {
+
+                P1HP[0].SetActive(true);
+                P1HP[1].SetActive(true);
+                P1HP[2].SetActive(true);
+                P1HP[3].SetActive(true);
+                P1HP[4].SetActive(false);
+            }
+            if (HP == 5)
+            {
+
+                P1HP[0].SetActive(true);
+                P1HP[1].SetActive(true);
+                P1HP[2].SetActive(true);
+                P1HP[3].SetActive(true);
+                P1HP[4].SetActive(true);
             }
             HP_temp = HP;
 
@@ -126,31 +147,50 @@ public class HPManagement : MonoBehaviour {
 
         else if (gameObject.GetComponent<InputKey>().isPlayer == 2)
         {
-            if (HP == HP_temp + 1)
+            if (HP == 1)
             {
-                if (HP == 1)
-                    P2HP[0].SetActive(true);
-                if (HP == 2)
-                    P2HP[1].SetActive(true);
-                if (HP == 3)
-                    P2HP[2].SetActive(true);
-                if (HP == 4)
-                    P2HP[3].SetActive(true);
-                if (HP == 5)
-                    P2HP[4].SetActive(true);
+
+                P2HP[0].SetActive(true);
+                P2HP[1].SetActive(false);
+                P2HP[2].SetActive(false);
+                P2HP[3].SetActive(false);
+                P2HP[4].SetActive(false);
             }
-            if (HP == HP_temp - 1)
+            if (HP == 2)
             {
-                if (HP == 0)
-                    P2HP[0].SetActive(false);
-                if (HP == 1)
-                    P2HP[1].SetActive(false);
-                if (HP == 2)
-                    P2HP[2].SetActive(false);
-                if (HP == 3)
-                    P2HP[3].SetActive(false);
-                if (HP == 4)
-                    P2HP[4].SetActive(false);
+
+                P2HP[0].SetActive(true);
+                P2HP[1].SetActive(true);
+                P2HP[2].SetActive(false);
+                P2HP[3].SetActive(false);
+                P2HP[4].SetActive(false);
+            }
+            if (HP == 3)
+            {
+
+                P2HP[0].SetActive(true);
+                P2HP[1].SetActive(true);
+                P2HP[2].SetActive(true);
+                P2HP[3].SetActive(false);
+                P2HP[4].SetActive(false);
+            }
+            if (HP == 4)
+            {
+
+                P2HP[0].SetActive(true);
+                P2HP[1].SetActive(true);
+                P2HP[2].SetActive(true);
+                P2HP[3].SetActive(true);
+                P2HP[4].SetActive(false);
+            }
+            if (HP == 5)
+            {
+
+                P2HP[0].SetActive(true);
+                P2HP[1].SetActive(true);
+                P2HP[2].SetActive(true);
+                P2HP[3].SetActive(true);
+                P2HP[4].SetActive(true);
             }
             HP_temp = HP;
 
@@ -281,7 +321,7 @@ public class HPManagement : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D c)
     {
 
-        if (c.tag == "Bullet")
+        if (c.tag == "Bullet" && isSuper == false)
         {
             if (gameObject.GetComponent<InputKey>().isPlayer != c.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet)
             {
@@ -293,8 +333,24 @@ public class HPManagement : MonoBehaviour {
                 {
                     Destroy(c.gameObject);
                 }
+
+                StartCoroutine(Super());
                 HP -= 1;
             }
         }
     }
+
+    IEnumerator Super()
+    {
+        isSuper = true;
+        for (int i = 0; i < 5; i++)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        isSuper = false;
+    }
+
 }
