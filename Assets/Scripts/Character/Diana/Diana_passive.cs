@@ -100,7 +100,7 @@ public class Diana_passive : MonoBehaviour {
 					bullet_temp = Instantiate(Diana_Bullet);
 					bullet_temp.transform.parent = GameObject.Find("BulletManager").transform;
 					bullet_temp.transform.position = bulletShootPosition + gameObject.transform.position;
-					bullet_temp.gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
+					bullet_temp.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
 					Destroy(bullet_temp, 5f);
 					Bullet_UI_temp[(Bullet_count--)-1].GetComponent<Image>().color=new Color(10f/255f*76f,10f/255f*98f,10f/255f*17f,0);
 					yield return new WaitForSeconds(0.3f * spd);

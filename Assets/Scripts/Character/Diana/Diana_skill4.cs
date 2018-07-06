@@ -26,8 +26,8 @@ public class Diana_skill4 : MonoBehaviour {
 		GetComponent<HPManagement> ().use=false;
 		GetComponent<Diana_passive> ().skill4_use = true;
 		GameObject cutIn;
-
-		cutIn = Instantiate(GetComponent<Diana_skill_Active>().DianaSkillCutIn, new Vector3(-1344f, 250f, 0f), Quaternion.identity);
+		Debug.Log(GetComponent<Diana_skill_Active>().DianaSkillCutIn);
+		cutIn = Instantiate(GetComponent<Diana_skill_Active>().DianaSkillCutIn, new Vector3(-1344f, 250f, -2f), Quaternion.identity);
 
 		for (int i = 0; i < 96; i += 8)
 		{
@@ -44,6 +44,7 @@ public class Diana_skill4 : MonoBehaviour {
 		}
 		cutIn.transform.position += new Vector3(56f, 0f, 0f);
 		Destroy(cutIn);
+		GetComponent<InputKey>().speed=12f;
 		while(count<=10)
 		{
 			
@@ -53,8 +54,9 @@ public class Diana_skill4 : MonoBehaviour {
 			deltaheight = (GetComponent<Skill_cNum2> ().oppP.y - GetComponent<Skill_cNum2> ().myP.y) / Mathf.Abs ((GetComponent<Skill_cNum2> ().oppP.y - GetComponent<Skill_cNum2> ().myP.y));
 			bullet_skill4 = Instantiate(spear, GetComponent<Diana_passive>().bulletShootPosition + gameObject.transform.position, Quaternion.Euler(0f,0f,deltaheight*angle));
 			bullet_skill4.transform.parent = GameObject.Find("BulletManager").transform;
-			bullet_skill4.GetComponent<BulletIdentifier> ().bulletSpd = 40f;
-			bullet_skill4.GetComponent<Rigidbody2D>().velocity = bullet_skill4.GetComponent<BulletIdentifier>().bulletSpd*Time.deltaTime*GetComponent<Skill_cNum2>().target;
+			bullet_skill4.GetComponent<BulletIdentifier> ().bulletSpd = 30000f;
+			bullet_skill4.GetComponent<Diana_skill4_attack>().angle=angle;
+			bullet_skill4.GetComponent<Rigidbody2D>().velocity = bullet_skill4.GetComponent<BulletIdentifier>().bulletSpd*Time.deltaTime*GetComponent<Skill_cNum2>().target.normalized;
 			bullet_skill4.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<InputKey>().isPlayer;
 			bullet_skill4.GetComponent<BulletIdentifier> ().isDestroiable = false;
 			count++;
@@ -63,5 +65,6 @@ public class Diana_skill4 : MonoBehaviour {
 		GetComponent<HPManagement> ().use=true;
 		GetComponent<Diana_skill_Active>().skill4_end = true;
 		GetComponent<Diana_passive> ().skill4_use = false;
+		GetComponent<InputKey>().speed=10f;
 	}
 }

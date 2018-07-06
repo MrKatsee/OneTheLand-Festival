@@ -4,62 +4,51 @@ using UnityEngine;
 
 public class Diana_skill4_attack : MonoBehaviour {
 	public GameObject skill4_bullet;
-	GameObject bullet;
-	Vector3 position_initial;
-	Vector3 position_final=new Vector3(0f,0f,0f);
-	Vector3 position_distance;
-	Vector3 position_layer;
-	public float direct_x;
-	public float direct_y;
+	Vector3 position;
 	public float angle;
-	float timer;
-	// Use this for initialization
-	void Start () {
-		position_distance=new Vector3(direct_x,direct_y,0f).normalized;
-		position_distance.x *= 45;
-		position_distance.y *= 45;
-		position_layer=new Vector3(direct_x,direct_y,0f).normalized;
-		position_layer.x *= 10;
-		position_layer.y *= 10;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	public void creating_bullet()
+	float timer=0;
+	int count;
+	GameObject bullet1;
+	GameObject bullet2;
+	GameObject bullet3;
+	GameObject bullet4;
+	float speed=100f;
+	void Start()
 	{
-		StartCoroutine (Creative_bullet ());
+		StartCoroutine (skill4());
 	}
-	IEnumerator Creative_bullet()
+	IEnumerator skill4()
 	{
 		timer = 0;
-		while (timer < 10f) {
+		count = 1;
+		while (timer < 5f) {
 			timer += Time.deltaTime;
-			position_initial = transform.position;
-			yield return StartCoroutine(fly_spear());
+			if (timer >= 0.2f * count) {
+				count++;
+				position = transform.position;
+				yield return StartCoroutine (bullet_ ());
+			}
+			else
+				yield return null;
 		}
 		Destroy (gameObject);
 	}
-	IEnumerator fly_spear()
+	IEnumerator bullet_()
 	{
-		while ((position_final.x >= position_initial.x + position_distance.x*0.9f&& position_final.x<= position_initial.x + position_distance.x*1.1f)
-			&&(position_final.y >= position_initial.y + position_distance.y*0.9f&& position_final.y<= position_initial.y + position_distance.y*1.1f)) {
-			timer += Time.deltaTime;
-			position_final = transform.position;
-		}
-		Instantiate_Bullet ((position_final + position_initial) / 2f+position_layer, angle+90);
-		Instantiate_Bullet ((position_final + position_initial) / 2f-position_layer, angle+90);
-		Instantiate_Bullet ((position_final + position_initial) / 2f+position_layer, angle-90);
-		Instantiate_Bullet ((position_final + position_initial) / 2f-position_layer, angle-90);
+		bullet1 = Instantiate (skill4_bullet,position+new Vector3(Mathf.Cos(angle+90),Mathf.Sin(angle+90),0f)*1.2f,Quaternion.identity);
+		bullet2 = Instantiate (skill4_bullet,position+new Vector3(Mathf.Cos(angle+90),Mathf.Sin(angle+90),0f)*0.6f,Quaternion.identity);
+		bullet3 = Instantiate (skill4_bullet,position-new Vector3(Mathf.Cos(angle+90),Mathf.Sin(angle+90),0f)*1.2f,Quaternion.identity);
+		bullet4 = Instantiate (skill4_bullet,position-new Vector3(Mathf.Cos(angle+90),Mathf.Sin(angle+90),0f)*0.6f,Quaternion.identity);
+		creating_bullet (bullet1,angle+90);
+		creating_bullet (bullet2,angle+90);
+		creating_bullet (bullet3,angle-90);
+		creating_bullet (bullet4,angle-90);
 		yield return null;
 	}
-	void Instantiate_Bullet(Vector3 position,float angle)
+	void creating_bullet(GameObject bullet, float angles)
 	{
-		bullet = Instantiate (skill4_bullet, position,Quaternion.Euler(0f,0f,angle));
 		bullet.transform.parent = GameObject.Find("BulletManager").transform;
-		bullet.GetComponent<Rigidbody2D>().velocity = 10f*new Vector2(direct_x,direct_y);
-		bullet.GetComponent<BulletIdentifier>().isPlayer_Bullet = gameObject.GetComponent<BulletIdentifier>().isPlayer_Bullet;
-		Destroy(bullet, 5f);
+		bullet.GetComponent<BulletIdentifier> ().isPlayer_Bullet = gameObject.GetComponent<BulletIdentifier> ().isPlayer_Bullet;
+		bullet.GetComponent<Rigidbody2D> ().velocity = new Vector2 (Mathf.Cos (angles), Mathf.Sin (angles)) * speed;
 	}
 }
