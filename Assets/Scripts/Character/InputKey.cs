@@ -16,7 +16,6 @@ public class InputKey : MonoBehaviour {
 		speed = 10;
         spd = speed * Time.deltaTime;
 
-        wall = GameObject.Find("Wall");
     }
 
     // Update is called once per frame
@@ -25,45 +24,7 @@ public class InputKey : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		spd = speed * Time.deltaTime;
-        if (isPlayer == 1 && canMove == 1)
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                transform.Translate(0f, spd * 20f, 0f);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                transform.Translate(0f, spd * -20f, 0f);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Translate(spd * -20f, 0f, 0f);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Translate(spd * 20f, 0f, 0f);
-            }
-        }
-
-        if (isPlayer == 2 && canMove == 1 && gamePuase_Input == false)
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                transform.Translate(0f, spd * 20f, 0f);
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                transform.Translate(0f, spd * -20f, 0f);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.Translate(spd * -20f, 0f, 0f);
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.Translate(spd * 20f, 0f, 0f);
-            }
-        }
+        
 
         if (Input.GetKey(KeyCode.T) && isPlayer == 1)
         {
@@ -93,5 +54,48 @@ public class InputKey : MonoBehaviour {
         gamePuase_Input = GameManager.Instance.gamePause;
     }
 
-   
+    void FixedUpdate()
+    {
+        if (isPlayer == 1 && canMove == 1)
+        {
+            if (Input.GetKey(KeyCode.W) && transform.position.y < 360)
+            {
+                transform.Translate(0f, spd * 20f, 0f);
+            }
+            if (Input.GetKey(KeyCode.S) && transform.position.y > -360)
+            {
+                transform.Translate(0f, spd * -20f, 0f);
+            }
+            if (Input.GetKey(KeyCode.A) && transform.position.x > -640)
+            {
+                transform.Translate(spd * -20f, 0f, 0f);
+            }
+            if (Input.GetKey(KeyCode.D) && transform.position.x < 0)
+            {
+                transform.Translate(spd * 20f, 0f, 0f);
+            }
+        }
+
+        if (isPlayer == 2 && canMove == 1 && gamePuase_Input == false)
+        {
+            if (Input.GetKey(KeyCode.UpArrow) && transform.position.y < 360)
+            {
+                transform.Translate(0f, spd * 20f, 0f);
+            }
+            if (Input.GetKey(KeyCode.DownArrow) && transform.position.y > -360)
+            {
+                transform.Translate(0f, spd * -20f, 0f);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > 0)
+            {
+                transform.Translate(spd * -20f, 0f, 0f);
+            }
+            if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 640)
+            {
+                transform.Translate(spd * 20f, 0f, 0f);
+            }
+        }
+    }
+
+
 }
