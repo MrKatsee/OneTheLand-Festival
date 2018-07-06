@@ -30,7 +30,7 @@ public class Diana_skill_Active : MonoBehaviour {
 		}
 		if (skillNum == 2)
 		{
-			gameObject.GetComponent<Diana_skill_2>().skill2();
+			gameObject.GetComponent<Diana_skill2>().skill2();
 		}
 		if (skillNum == 3)
 		{

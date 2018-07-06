@@ -43,7 +43,7 @@ public class Diana_skill4 : MonoBehaviour {
 			yield return new WaitForSeconds(0.01f);
 		}
 		cutIn.transform.position += new Vector3(56f, 0f, 0f);
-		Destroy(cutIn.gameObject);
+		Destroy(cutIn);
 		while(count<=10)
 		{
 			
