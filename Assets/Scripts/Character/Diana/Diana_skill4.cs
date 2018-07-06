@@ -27,23 +27,7 @@ public class Diana_skill4 : MonoBehaviour {
 		GetComponent<Diana_passive> ().skill4_use = true;
 		GameObject cutIn;
 		Debug.Log(GetComponent<Diana_skill_Active>().DianaSkillCutIn);
-		cutIn = Instantiate(GetComponent<Diana_skill_Active>().DianaSkillCutIn, new Vector3(-1344f, 250f, -2f), Quaternion.identity);
-
-		for (int i = 0; i < 96; i += 8)
-		{
-			cutIn.transform.position += new Vector3(112f, 0f, 0f);
-			yield return new WaitForSeconds(0.01f);
-		}
-
-		yield return new WaitForSeconds(0.5f);
-
-		for (int i = 96; i > 0; i -= 8)
-		{
-			cutIn.transform.position += new Vector3(112f, 0f, 0f);
-			yield return new WaitForSeconds(0.01f);
-		}
-		cutIn.transform.position += new Vector3(56f, 0f, 0f);
-		Destroy(cutIn);
+		cutIn = Instantiate(GetComponent<Diana_skill_Active>().DianaSkillCutIn, new Vector3(-700f, 250f, -2f), Quaternion.identity);
 		GetComponent<InputKey>().speed=12f;
 		while(count<=10)
 		{
