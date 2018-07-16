@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class gamestart : MonoBehaviour {
+public class Button : MonoBehaviour {
 
 
-	public void ButtonClick()
+	public void buttonclick()
 	{
-		SceneManager.LoadScene("SL_UI");
-		Time.timeScale = 1;
+		SceneManager.LoadScene("start");
 	}
 }

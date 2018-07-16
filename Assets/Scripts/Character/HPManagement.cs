@@ -95,7 +95,16 @@ public class HPManagement : MonoBehaviour {
         }
 
         if (gameObject.GetComponent<InputKey>().isPlayer == 1)
-        {
+		{
+			if (HP == 0) {
+				GameOver.Gameover = true;
+				GameOver.player = 2;
+				P1HP[0].SetActive(false);
+				P1HP[1].SetActive(false);
+				P1HP[2].SetActive(false);
+				P1HP[3].SetActive(false);
+				P1HP[4].SetActive(false);
+			}
             if (HP == 1)
             {
 
@@ -146,7 +155,16 @@ public class HPManagement : MonoBehaviour {
         }
 
         else if (gameObject.GetComponent<InputKey>().isPlayer == 2)
-        {
+		{
+			if (HP == 0) {
+				GameOver.Gameover = true;
+				GameOver.player = 1;
+				P2HP[0].SetActive(false);
+				P2HP[1].SetActive(false);
+				P2HP[2].SetActive(false);
+				P2HP[3].SetActive(false);
+				P2HP[4].SetActive(false);
+			}
             if (HP == 1)
             {
 
@@ -202,7 +220,7 @@ public class HPManagement : MonoBehaviour {
     {
         if (skillGuage <= 1f && gamePuase_HP == false)
         {
-            skillGuage += 0.2f * Time.deltaTime;
+            skillGuage += 0.1f * Time.deltaTime;
         }
 
         skillBar.fillAmount = skillGuage;
@@ -223,19 +241,23 @@ public class HPManagement : MonoBehaviour {
         {
             if (skillGuageStack >= 0.25f)
             {
-                skillTrigger = 1;
+				skillTrigger = 1;
+				skillGuage -= 0.25f;
             }
             if (skillGuageStack >= 0.5f)
             {
-                skillTrigger = 2;
+				skillTrigger = 2;
+				skillGuage -= 0.5f;
             }
             if (skillGuageStack >= 0.75f)
             {
-                skillTrigger = 3;
+				skillTrigger = 3;
+				skillGuage -= 0.75f;
             }
             if (skillGuageStack >= 1f)
             {
-                skillTrigger = 4;
+				skillTrigger = 4;
+				skillGuage -= 0.99f;
             }
             skillGuageStack = 0f;
         }
@@ -244,19 +266,23 @@ public class HPManagement : MonoBehaviour {
         {
 			if (use==true&&skillGuageStack >= 0.1f)
 			{
-                skillTrigger = 1;
+				skillTrigger = 1;
+				skillGuage -= 0.1f;
             }
             if (skillGuageStack >= 0.3f)
             {
-                skillTrigger = 2;
+				skillTrigger = 2;
+				skillGuage -= 0.3f;
             }
             if (skillGuageStack >= 0.5f)
             {
-                skillTrigger = 3;
+				skillTrigger = 3;
+				skillGuage -= 0.5f;
             }
             if (skillGuageStack >= 1f)
             {
-                skillTrigger = 4;
+				skillTrigger = 4;
+				skillGuage -= 0.99f;
             }
             skillGuageStack = 0f;
         }
