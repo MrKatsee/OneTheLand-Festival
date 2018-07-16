@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SL_MV_Map : MonoBehaviour {
 
@@ -43,6 +44,7 @@ public class SL_MV_Map : MonoBehaviour {
 			select_p1.SL_Decide = false;
 			select_p2.SL_Decide = false;
 			UI_BG.gameObject.SetActive (false);
+			SceneManager.LoadScene("GameScene");
 		}
 	}
 }

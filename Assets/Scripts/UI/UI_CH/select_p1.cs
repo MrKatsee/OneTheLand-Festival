@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class select_p1 : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class select_p1 : MonoBehaviour {
 	void Start () {
 		Data.P1 = 1;
 		SL_Decide = false;
+		SL_Ch.GetComponent<Image>().color= new Color(10,0,0,1);
 	}
 	
 	// Update is called once per frame
@@ -36,10 +38,12 @@ public class select_p1 : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.T)) 
 		{
 			SL_Decide = true;
+			SL_Ch.GetComponent<Image>().color= new Color(10,10,10,1);
 		}
 		else if(Input.GetKeyDown(KeyCode.Y))
 		{
 			SL_Decide = false;
+			SL_Ch.GetComponent<Image>().color= new Color(10,0,0,1);
 		}
 	}
 }

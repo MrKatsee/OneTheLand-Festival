@@ -24,8 +24,7 @@ public class Diana_skill2_data : MonoBehaviour {
 			bullet_Impact=Instantiate (Bullet_Impact);
 			bullet_Impact.transform.position = transform.position;
 			for(int i=0;i<4;i++)
-				bullet_im[i].GetComponent<BulletIdentifier>().isPlayer_Bullet = Diana_skill_2.player;
-			Debug.Log (Diana_skill_2.player);
+				bullet_im[i].GetComponent<BulletIdentifier>().isPlayer_Bullet = Diana_skill2.player;
 			Destroy (gameObject);
 		}
 	}

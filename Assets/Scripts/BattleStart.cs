@@ -8,7 +8,8 @@ public class BattleStart : MonoBehaviour {
     Vector3 p_location = new Vector3(0f, 0f, 0f);
     Vector3 p_rotation = new Vector3(0f, 0f, 0f);
     public GameObject[] Charac = new GameObject[7];
-    GameObject temp;
+	public static GameObject player1;
+	public static GameObject player2;
     public int startHP;
     public Vector2 p1P;
     public Vector2 p2P;
@@ -43,16 +44,16 @@ public class BattleStart : MonoBehaviour {
 
         if (cNum == 1)
         {
-            GameObject temp = Instantiate(Charac[0], p_location, Quaternion.identity);
-            temp.transform.localScale = p_rotation;
-            temp.GetComponent<InputKey>().isPlayer = pNum;
+			player1= Instantiate(Charac[0], p_location, Quaternion.identity);
+			player1.transform.localScale = p_rotation;
+			player1.GetComponent<InputKey>().isPlayer = pNum;
         }
 
         if (cNum == 2)
         {
-            GameObject temp = Instantiate(Charac[1], p_location, Quaternion.identity);
-            temp.transform.localScale = p_rotation;
-            temp.GetComponent<InputKey>().isPlayer = pNum;
+			player2 = Instantiate(Charac[1], p_location, Quaternion.identity);
+			player2.transform.localScale = p_rotation;
+			player2.GetComponent<InputKey>().isPlayer = pNum;
         }
     }
 	

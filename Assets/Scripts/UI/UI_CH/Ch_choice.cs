@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Ch_choice : MonoBehaviour {
 	private GameObject UIBG;
 	void Start()
@@ -15,6 +16,7 @@ public class Ch_choice : MonoBehaviour {
 			//Ch_Time.timerstart = false;
 			gameObject.SetActive (false);
 			UIBG.SetActive (true);
+
 		}
 	}
 }
